@@ -1,0 +1,7 @@
+#mongo
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: madb   #à changer en fonction de notre base
