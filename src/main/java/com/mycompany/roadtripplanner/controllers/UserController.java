@@ -3,6 +3,7 @@ package com.mycompany.roadtripplanner.controllers;
 import com.mycompany.roadtripplanner.dtos.user.UserDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserSaveDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserUpdateDTO;
+import com.mycompany.roadtripplanner.entities.User;
 import com.mycompany.roadtripplanner.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +31,8 @@ public class UserController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<UserDTO>find(@PathVariable String id ){
-        UserDTO userDto = service.find(id);
+    public ResponseEntity<User> find(@PathVariable String id ){
+        User userDto = service.find(id);
         if(userDto ==null)
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(userDto);

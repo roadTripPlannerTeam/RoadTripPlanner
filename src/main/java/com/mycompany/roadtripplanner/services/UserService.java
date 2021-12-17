@@ -1,13 +1,11 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.user.UserDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserSaveDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserUpdateDTO;
 import com.mycompany.roadtripplanner.entities.User;
 import com.mycompany.roadtripplanner.repositories.UserRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,10 +23,21 @@ public class UserService {
         this.repository = repository;
     }
 
+    /**
+     * Méthode qui permet de créer un utilisateur
+     * @param user
+     * @return un utilisateur sauvegardé
+     */
+    public UserDTO save(UserSaveDTO obj) {
+        User userToSave = mapper.map(obj, User.class);
+        User user = repository.save(userToSave);
+        UserDTO userSaved = mapper.map(user, UserDTO.class);
+        return userSaved;
+    }
 
     /**
-     *
-     * @return
+     *Méthode Qui crée une list et qui ajout l'enssemble des utilisateurs
+     * @return une liste avec l'ensemble des utilisateurs
      */
     public List<UserDTO>findAll(){
         List<UserDTO>users = new ArrayList<>();
@@ -43,26 +52,16 @@ public class UserService {
      * @param id
      * @return les informations de l'utilisateur
      */
-   public UserDTO find(String id) {
-        Optional<User>user = repository.findById(id);
-        UserDTO userDTO=null;
-        if(user.isPresent()){
-            userDTO= mapper.map(user,UserDTO.class);
+   public User find(String id) {
+        Optional<User>userOptional = repository.findById(id);
+        User userDTO=null;
+        if(userOptional.isPresent()){
+            userDTO= userOptional.get();
         }
         return userDTO;
     }
 
-    /**
-     * Méthode qui permet de créer un utilisateur
-     * @param user
-     * @return un utilisateur sauvegardé
-     */
-    public UserDTO save(UserSaveDTO obj) {
-        User userToSave = mapper.map(obj, User.class);
-        User user = repository.save(userToSave);
-        UserDTO userSaved = mapper.map(user, UserDTO.class);
-        return userSaved;
-    }
+
 
     /**
      * Méthode qui permet de modifier les informations de l'utilisateur
