@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ConversionUpdateDTO {
 
-    private String Id;
-    private float intialSum;
+    private String id;
+    private float initialSum;
     private float rate;
     private String symbolCurrency;
 

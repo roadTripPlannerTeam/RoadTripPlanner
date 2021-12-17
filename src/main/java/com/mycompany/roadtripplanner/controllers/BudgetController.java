@@ -55,7 +55,7 @@ public class BudgetController {
     /**
      * Créé la route pour créer un objet budget
      * @param budgetSaveDTO
-     * @return un status Http 201 Created
+     * @return un statut Http 201 Created
      */
     @PostMapping
     public ResponseEntity<BudgetDTO> save(@RequestBody BudgetSaveDTO budgetSaveDTO){

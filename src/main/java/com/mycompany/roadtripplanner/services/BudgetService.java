@@ -45,7 +45,7 @@ public class BudgetService {
     /**
      * Va retourner un budget grâce à son id
      * @param id
-     * @return l'objet budget
+     * @return l'objet budgetDTO
      */
     public BudgetDTO find(String id){
         Optional<Budget> b = repository.findById(id);

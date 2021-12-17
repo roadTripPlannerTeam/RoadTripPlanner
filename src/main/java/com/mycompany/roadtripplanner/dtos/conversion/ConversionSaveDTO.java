@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ConversionSaveDTO {
 
-    private float intialSum;
+    private float initialSum;
     private float rate;
     private String symbolCurrency;
 
