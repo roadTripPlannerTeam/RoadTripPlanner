@@ -31,6 +31,9 @@ public class UserService {
     /**
      * Méthode qui permet de créer un utilisateur
      * @param user
+     * elle transforme l'objet relationnel en objet java
+     * elle effectue la requete de notre transformation par le repository
+     * Elle retransforme notre objet recupéré du repository
      * @return un utilisateur sauvegardé
      */
     public UserDTO save(UserSaveDTO obj) {
@@ -41,7 +44,10 @@ public class UserService {
     }
 
     /**
-     *Méthode Qui crée une list et qui ajout l'enssemble des utilisateurs
+     *Méthode Qui permet de récupérer une liste d'utilisateur
+     * Elle crée une liste d'utilisateur
+     * Elle effectue une boucle pour transforme l'ensemble des utilisateurs trouver dans le repository
+     * tant qu'il y en à pour les inserer dans la liste.
      * @return une liste avec l'ensemble des utilisateurs
      */
     public List<UserDTO>findAll(){
@@ -55,6 +61,9 @@ public class UserService {
     /**
      * Méthode qui permet de récupere les informations d'un utilisateur
      * @param id
+     * La requête va recupérer l'utilisateur qui possède cette id passé en parametre
+     * On instancie le userDTO a null puis dans notre condition Si notre optionnal n'est vide
+     * nous passerons ses valeur dans le UserDto
      * @return les informations de l'utilisateur
      */
    public User find(String id) {
@@ -69,6 +78,8 @@ public class UserService {
     /**
      * Méthode permettant de modifier les informations d'un utlisdateur
      * @param userUpdateDTO
+     * elle transformera les informations modifié qui les enverra au repository qui les sauvegardera
+     * Elle transformera l'objet recupérer du repository
      * @return un utilisateur avec les informations modifier
      */
     public Object update(UserUpdateDTO userUpdateDTO) {
@@ -78,6 +89,11 @@ public class UserService {
         return userRetour;
     }
 
+    /**
+     * Méthode qui supprimera l'utilisateur
+     * @param id
+     * Elle envoie au repository la requête a supprimé qui possède cette id
+     */
     public void deleteById(String id) {
         repository.deleteById(id);
 
