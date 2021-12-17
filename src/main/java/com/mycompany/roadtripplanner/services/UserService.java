@@ -18,6 +18,11 @@ public class UserService {
     private ModelMapper mapper;
     private UserRepositoryImpl repository;
 
+    /**
+     * Constructeur pour le modèle mapper et je l'interface repository
+     * @param mapper
+     * @param repository
+     */
     public UserService(ModelMapper mapper, UserRepositoryImpl repository) {
         this.mapper = mapper;
         this.repository = repository;
@@ -60,8 +65,6 @@ public class UserService {
         }
         return userDTO;
     }
-
-
 
     /**
      * Méthode qui permet de modifier les informations de l'utilisateur
