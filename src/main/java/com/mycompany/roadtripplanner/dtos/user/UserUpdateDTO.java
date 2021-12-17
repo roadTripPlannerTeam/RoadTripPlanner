@@ -1,5 +1,6 @@
 package com.mycompany.roadtripplanner.dtos.user;
 
+import com.mycompany.roadtripplanner.entities.Adress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,5 @@ public class UserUpdateDTO {
     private String email;
     private String Password;
     private Date bithday;
-    private String Adress;
+    private Adress adress;
 }
