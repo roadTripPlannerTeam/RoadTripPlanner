@@ -1,17 +1,8 @@
-package com.mycompany.roadtripplanner.entities;
-
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package com.mycompany.roadtripplanner.dtos.user;
 
 import java.util.Date;
 
-@Data
-@Document
-public class User {
-    //Attribut
-    @Id
-    private String id;
+public class UserSaveDTO {
     private String firstName;
     private String lastName;
     private String email;
@@ -19,11 +10,7 @@ public class User {
     private Date bithday;
     private String Adress;
 
-    //CVonstructeur
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email, String password, Date bithday, String adress) {
+    public UserSaveDTO(String firstName, String lastName, String email, String password, Date bithday, String adress) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -32,7 +19,6 @@ public class User {
         Adress = adress;
     }
 
-    //Getters setters
     public String getFirstName() {
         return firstName;
     }
