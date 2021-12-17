@@ -40,18 +40,14 @@ public class UserController {
     }
 
 
-
     @PutMapping()
     public ResponseEntity<Object> update(@RequestBody UserUpdateDTO userUpdateDTO){
         return  ResponseEntity.ok(service.update(userUpdateDTO));
     }
 
-   /* @DeleteMapping()
-    public ResponseEntity<Long>deleteById(@RequestBody UserDeleteDTO userDeleteDTO){
-        Long response =this.service.deleteById(userDeleteDTO);
-        if(response == 0){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(response);
-    }*/
+    @DeleteMapping("{id}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable String id){
+        service.deleteById(id);
+        return ResponseEntity.ok(true);
+    }
 }

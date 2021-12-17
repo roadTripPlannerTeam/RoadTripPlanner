@@ -67,9 +67,9 @@ public class UserService {
     }
 
     /**
-     * Méthode qui permet de modifier les informations de l'utilisateur
+     * Méthode permettant de modifier les informations d'un utlisdateur
      * @param userUpdateDTO
-     * @return
+     * @return un utilisateur avec les informations modifier
      */
     public Object update(UserUpdateDTO userUpdateDTO) {
         User userToSave = mapper.map(userUpdateDTO,User.class);
@@ -78,4 +78,8 @@ public class UserService {
         return userRetour;
     }
 
+    public void deleteById(String id) {
+        repository.deleteById(id);
+
+    }
 }
