@@ -1,7 +1,6 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
-import com.mycompany.roadtripplanner.dtos.budget.BudgetDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Budget;
