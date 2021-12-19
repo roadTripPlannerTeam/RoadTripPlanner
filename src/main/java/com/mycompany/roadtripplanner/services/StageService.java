@@ -1,10 +1,9 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.stage.StageDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
-import com.mycompany.roadtripplanner.entities.stage.Stage;
+import com.mycompany.roadtripplanner.entities.Stage;
 import com.mycompany.roadtripplanner.repositories.StageRepositoryImpl;
 import org.modelmapper.ModelMapper;
 

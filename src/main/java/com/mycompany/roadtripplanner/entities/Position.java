@@ -1,4 +1,4 @@
-package com.mycompany.roadtripplanner.entities.position;
+package com.mycompany.roadtripplanner.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package com.mycompany.roadtripplanner.entities.stage;
+package com.mycompany.roadtripplanner.entities;
 
-import com.mycompany.roadtripplanner.entities.position.Position;
+import com.mycompany.roadtripplanner.entities.Position;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
