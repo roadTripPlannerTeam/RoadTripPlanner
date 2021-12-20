@@ -6,17 +6,20 @@ import com.mycompany.roadtripplanner.dtos.conversion.ConversionUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Conversion;
 import com.mycompany.roadtripplanner.repositories.ConversionRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class ConversionService {
 
     ConversionRepositoryImpl repository;
     ModelMapper mapper;
+
+    public ConversionService(ModelMapper mapper, ConversionRepositoryImpl repository) {
+        this.mapper = mapper;
+        this.repository = repository;
+    }
 
     /**
      * Constructeur de ConversionService

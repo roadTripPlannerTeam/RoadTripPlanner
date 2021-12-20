@@ -6,17 +6,20 @@ import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Budget;
 import com.mycompany.roadtripplanner.repositories.BudgetRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class BudgetService {
 
     BudgetRepositoryImpl repository;
     ModelMapper mapper;
+
+    public BudgetService(ModelMapper mapper, BudgetRepositoryImpl repository) {
+        this.mapper = mapper;
+        this.repository = repository;
+    }
 
     /**
      * Constructeur de BudgetService

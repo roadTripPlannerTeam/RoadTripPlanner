@@ -6,17 +6,20 @@ import com.mycompany.roadtripplanner.dtos.todolist.TodoListUpdateDTO;
 import com.mycompany.roadtripplanner.entities.TodoList;
 import com.mycompany.roadtripplanner.repositories.TodoListRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class TodoListService {
 
     TodoListRepositoryImpl repository;
     ModelMapper mapper;
+
+    public TodoListService(ModelMapper mapper, TodoListRepositoryImpl repository) {
+        this.mapper = mapper;
+        this.repository = repository;
+    }
 
     /**
      * Constructeur de TodoListService
