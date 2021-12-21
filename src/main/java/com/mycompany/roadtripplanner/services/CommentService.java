@@ -52,7 +52,9 @@ public class CommentService {
      */
     public List<CommentDTO> findAll(){
         List<CommentDTO>comments = new ArrayList<>();
+        System.out.println("hello");
         repository.findAll().forEach(comment -> {
+            System.out.println(comment);
             comments.add(mapper.map(comment,CommentDTO.class));
         });
         return comments;

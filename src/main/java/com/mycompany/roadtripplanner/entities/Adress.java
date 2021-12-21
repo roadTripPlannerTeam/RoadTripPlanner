@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Adress {
     private String number;
     private String street;
-    private int postal_code;
+    private int postalCode;
     private String city;
     private String country;
 }

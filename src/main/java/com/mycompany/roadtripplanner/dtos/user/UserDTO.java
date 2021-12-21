@@ -1,11 +1,15 @@
 package com.mycompany.roadtripplanner.dtos.user;
 
+import com.mycompany.roadtripplanner.configurations.UserRelationDTO;
 import com.mycompany.roadtripplanner.entities.Adress;
+import com.mycompany.roadtripplanner.entities.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
