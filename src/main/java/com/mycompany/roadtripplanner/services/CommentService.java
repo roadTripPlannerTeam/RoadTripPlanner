@@ -46,7 +46,7 @@ public class CommentService {
     /**
      *Méthode Qui permet de récupérer une liste de commentairte
      * Elle crée une liste de commentaire
-     * Elle effectue une boucle pour transforme l'ensemble des commentaires trouver dans le repository
+     * Elle effectue une boucle pour transformer l'ensemble des commentaires trouver dans le repository
      * tant qu'il y en à pour les inserer dans la liste.
      * @return une liste avec l'ensemble des commentaires
      */

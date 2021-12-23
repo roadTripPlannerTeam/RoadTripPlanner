@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItineraryUpdateDTO {
+    private String id;
     private String title;
     private String experienceFeedback;
     private float nbStars;

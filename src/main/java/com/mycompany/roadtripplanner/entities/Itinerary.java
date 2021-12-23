@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,5 +24,5 @@ public class Itinerary {
 //  private TodoList todoList;
 //  private Budget budget
     List<Comment> comments;
-//    private Map<>;
+//    HashMap<Date, Stage> toto;
 }
