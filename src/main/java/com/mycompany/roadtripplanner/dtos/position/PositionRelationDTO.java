@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PositionRelationDTO {
-    private     String id;
+    private String id;
 }
