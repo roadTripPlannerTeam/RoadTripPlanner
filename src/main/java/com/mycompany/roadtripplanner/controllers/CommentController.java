@@ -21,7 +21,7 @@ public class CommentController {
     }
 
     /**
-     * Controlleur qui au service de créer un Commentaire
+     * Controlleur qui demande au service de créer un Commentaire
      * avec les données du Request body transmit
      * @param comment
      * @return l'utilisateur sauvegardé

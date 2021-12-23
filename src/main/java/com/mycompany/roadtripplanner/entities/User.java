@@ -25,6 +25,9 @@ public class User {
     private String Password;
     private Date bithday;
     private Adress Adress;
+    private String profilPicture;
 
+@DBRef
+    List<CommentDTO>comments;
 
 }

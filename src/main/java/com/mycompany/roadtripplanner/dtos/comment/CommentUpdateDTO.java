@@ -15,5 +15,6 @@ public class CommentUpdateDTO {
     private String title;
     private String description;
     private Date date;
-    private UserRelationDTO author;
+    private int like;
+    private UserRelationDTO user;
 }

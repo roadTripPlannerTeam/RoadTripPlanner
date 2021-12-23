@@ -18,5 +18,6 @@ public class UserUpdateDTO {
     private String Password;
     private Date bithday;
     private Adress adress;
+    private String profilPicture;
     private UserRelationDTO commentRelationDTO;
 }

@@ -14,5 +14,6 @@ public class CommentSaveDTO {
     private String title;
     private String description;
     private Date date;
+    private int like;
     private UserRelationDTO user;
 }

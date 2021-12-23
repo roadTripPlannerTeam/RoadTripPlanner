@@ -20,5 +20,6 @@ public class CommentDTO {
     private String title;
     private String description;
     private Date date;
+    private int like;
     private UserCommentDTO user;
 }

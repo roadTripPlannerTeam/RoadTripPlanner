@@ -22,6 +22,6 @@ public class UserDTO {
     private String password;
     private Date bithday;
     private Adress adress;
-
+    private String profilPicture;
 
 }

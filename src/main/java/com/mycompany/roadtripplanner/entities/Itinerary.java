@@ -1,27 +1,27 @@
 package com.mycompany.roadtripplanner.entities;
 
-import com.mycompany.roadtripplanner.configurations.UserRelationDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class Itinerary {
     @Id
     private String id;
     private String title;
-    private String description;
-    private Date date;
-    private int like;
-    @DBRef
-    private User user;
+    private String experienceFeedback;
+    private float nbStars;
+//  private TodoList todoList;
+//  private Budget budget
+    List<Comment> comments;
+//    private Map<>;
 }

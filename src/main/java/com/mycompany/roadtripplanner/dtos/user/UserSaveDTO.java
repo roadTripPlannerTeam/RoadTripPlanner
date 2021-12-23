@@ -18,6 +18,7 @@ public class UserSaveDTO {
     private String password;
     private Date bithday;
     private Adress adress;
+    private String profilPicture;
     private UserRelationDTO author;
 
 }

@@ -19,7 +19,7 @@ public class CommentService {
     private CommentRepositoryImpl repository;
 
     /**
-     * Constructeur pour le modèle mapper et je l'interface repository
+     * Constructeur pour le modèle mapper et  l'interface repository
      * @param mapper
      * @param repository
      */
