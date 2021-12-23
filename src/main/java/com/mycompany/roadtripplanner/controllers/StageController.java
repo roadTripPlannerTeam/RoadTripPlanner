@@ -1,6 +1,10 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.stage.StageDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
@@ -10,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/stages")
@@ -17,62 +23,71 @@ public class StageController {
 
     StageService service;
 
+
+
     public StageController(StageService service) {
         this.service = service;
     }
 
     /**
      * Accès à toutes les étapes 'stage'
-     * @return List<StageDTO>
+     *
+     * @return List<StageGetDTO>
      */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<StageDTO> findAll() {
+    public List<StageGetDTO> findAll() {
         return service.findAll();
     }
 
     /**
      * Accès à une étape via son id
+     *
      * @param id
-     * @return ResponseEntity<StageDTO>
+     * @return ResponseEntity<StageGetDTO>
      */
     @GetMapping("/{id}")
-    public ResponseEntity<StageDTO> find(@PathVariable String id) {
-        StageDTO stageDTO = service.find(id);
-        if (stageDTO == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<StageGetDTO> findById(@PathVariable String id) {
+        try{
+            Optional<StageGetDTO> stageDTO = service.findById(id);
+            return (ResponseEntity.ok(stageDTO.get()));
+
+        }catch (NoSuchElementException e ){
+            return (ResponseEntity.notFound().header(e.getMessage()).build());
         }
-        return ResponseEntity.ok(stageDTO);
     }
 
     /**
      * Création et sauvegarde d'une étape 'stage'
+     *
      * @param stage
      * @return ResponseEntity<StageDTO>
      */
     @PostMapping
-    public ResponseEntity<StageDTO> create(@RequestBody StageSaveDTO stage) {
+    public ResponseEntity<StageGetDTO> create(@RequestBody StageSaveDTO stage) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(stage));
     }
 
     /**
      * Modification d'une étape 'stage'
+     *
      * @param stage
-     * @return ResponseEntity<StageDTO>
+     * @return ResponseEntity<StageGetDTO>
      */
     @PutMapping
-    public ResponseEntity<StageDTO> update(@RequestBody StageUpdateDTO stage) {
+    public ResponseEntity<StageGetDTO> update(@RequestBody StageUpdateDTO stage) {
         return ResponseEntity.ok(service.update(stage));
     }
 
     /**
-     * Supprime une étape 'stag' via son id
-     * @param id
-     * @return ResponseEntity<Boolean>
+     *
+     * @param stage
+     * @return String message
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@RequestBody String id) {
-        service.delete(id);
-        return ResponseEntity.ok(true);
+    @DeleteMapping
+    public ResponseEntity<String> delete(@RequestBody StageDeleteDTO stage) {
+        service.delete(stage);
+        return ResponseEntity.ok("stage bien supprimé");
     }
+
 }

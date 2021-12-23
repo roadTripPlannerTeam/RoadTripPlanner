@@ -1,14 +1,14 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.stage.StageDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.stage.*;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.entities.Stage;
 import com.mycompany.roadtripplanner.repositories.StageRepositoryImpl;
 import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class StageService {
@@ -17,6 +17,7 @@ public class StageService {
 
     /**
      * Constructeur
+     *
      * @param mapper
      * @param repository
      */
@@ -27,65 +28,70 @@ public class StageService {
 
     /**
      * retourne la liste de toutes les étapes 'stages'
-     * @return List<StageDTO> stageDTOS
+     *
+     * @return List<StageGetDTO> stageDTOS
      */
-    public List<StageDTO> findAll() {
-        List<StageDTO> stageDTOS = new ArrayList<>();
+    public List<StageGetDTO> findAll() {
+        List<StageGetDTO> stageDTOS = new ArrayList<>();
         this.repository.findAll().forEach(stage -> {
-            stageDTOS.add(mapper.map(stage, StageDTO.class));
+            stageDTOS.add(mapper.map(stage, StageGetDTO.class));
         });
         return stageDTOS;
     }
 
     /**
      * retourne une étape 'stage' via son id
+     *
      * @param id
-     * @return stageDTO
+     * @return Optional<StageGetDTO> stageDTO
      */
-    public StageDTO find(String id) {
-        Optional<Stage> stageOptional = repository.findById(id);
-        StageDTO stageDTO = null;
-        if (stageOptional.isPresent()) {
-            stageDTO = mapper.map(stageOptional, StageDTO.class);
+    public Optional<StageGetDTO> findById(String id) throws NoSuchElementException {
+        Optional<Stage> stage = repository.findById(id);
+        StageGetDTO stageDTO = null;
+        if(stage.isPresent()){
+            stageDTO =   mapper.map( repository.findById(id).get(), StageGetDTO.class);
         }
-        return stageDTO;
+
+        return Optional.of(stageDTO);
     }
 
     /**
      * Création et sauvegarde d'une étape 'stage'
+     *
      * @param stageSaveDTO
-     * @return stageSaved
+     * @return StageGetDTO stageSaved
      */
-    public StageDTO save(StageSaveDTO stageSaveDTO) {
+    public StageGetDTO save(StageSaveDTO stageSaveDTO) {
         Stage stageToSave = mapper.map(
                 stageSaveDTO,
                 Stage.class
         );
         Stage stage = repository.save(stageToSave);
-        StageDTO stageSaved = mapper.map(stage, StageDTO.class);
+        StageGetDTO stageSaved = mapper.map(stage, StageGetDTO.class);
         return stageSaved;
     }
 
     /**
      * Mise à jour et modification d'une étape 'stage'
+     *
      * @param stageUpdateDTO
-     * @return stageSaved
+     * @return StageGetDTO stageSaved
      */
-    public StageDTO update(StageUpdateDTO stageUpdateDTO) {
+    public StageGetDTO update(StageUpdateDTO stageUpdateDTO) {
         Stage stageToSave = mapper.map(
                 stageUpdateDTO,
                 Stage.class
         );
         Stage stage = repository.save(stageToSave);
-        StageDTO stageSaved = mapper.map(stage, StageDTO.class);
+        StageGetDTO stageSaved = mapper.map(stage, StageGetDTO.class);
         return stageSaved;
     }
 
     /**
-     * Supprime une étape 'stage' via son id
-     * @param id
+     *
+     * @param stageDeleteDTO
      */
-    public void delete(String id) {
-        repository.deleteById(id);
+    public void delete(StageDeleteDTO stageDeleteDTO) {
+        repository.delete( mapper.map(stageDeleteDTO,Stage.class));  ;
     }
 }

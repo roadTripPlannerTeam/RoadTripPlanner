@@ -12,7 +12,7 @@ public class StageConfiguration {
     public StageService stageService(
             ModelMapper mapper,
             StageRepositoryImpl repository
-    ){
+    ) {
         return new StageService(mapper, repository);
     }
 }
