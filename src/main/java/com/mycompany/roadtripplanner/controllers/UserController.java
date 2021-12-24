@@ -46,7 +46,7 @@ public class UserController {
      * @return l'utisateur ainsi que c'est information si l'utilisateur existe
      */
     @GetMapping("{id}")
-    public ResponseEntity<User> find(@PathVariable String id ){
+    public ResponseEntity<User> findById(@PathVariable String id ){
         User userDto = service.find(id);
         if(userDto ==null)
             return ResponseEntity.notFound().build();

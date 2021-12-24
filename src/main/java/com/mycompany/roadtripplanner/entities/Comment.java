@@ -1,7 +1,5 @@
 package com.mycompany.roadtripplanner.entities;
 
-import com.mycompany.roadtripplanner.configurations.UserRelationDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
