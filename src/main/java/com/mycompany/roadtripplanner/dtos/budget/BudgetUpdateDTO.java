@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BudgetUpdateDTO {
 
+    private String id;
     private float initialAmount;
     private float expense;
 
