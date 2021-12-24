@@ -1,4 +1,4 @@
-package com.mycompany.roadtripplanner.configurations;
+package com.mycompany.roadtripplanner.dtos.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
