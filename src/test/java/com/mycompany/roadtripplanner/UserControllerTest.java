@@ -92,6 +92,7 @@ public class UserControllerTest {
         String body = json.toJson(this.userDto());
         this.mockMvc.perform(delete("users"));
     }
+
     private UserDTO userDto(){
         return new UserDTO(
         "1xsi",
