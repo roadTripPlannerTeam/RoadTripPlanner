@@ -4,6 +4,7 @@ public class Util {
 
     /**
      * Fonction qui permet de calculer un nouveau montant
+     * Utiliser pour la table budget
      * @Param double initalAmout, double expense
      * @Return double newAmount
      */
