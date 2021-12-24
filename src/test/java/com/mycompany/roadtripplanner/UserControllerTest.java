@@ -49,34 +49,31 @@ public class UserControllerTest {
         this.mockMvc.perform(get("/users/dvdcsdf5fs5sf"))
                 .andExpect(status().isNotFound());
     }
-/*
+
     @Test
     public void testFindOne() throws Exception{
         //On crée un utilisateur
-        UserDTO user = this.userDto();
+        UserDTO userDTO = this.userDto();
         //On appel la methode given pour moker notre service
         //en parametre le type de requete
         BDDMockito.given(service.find("1"))
-                .willReturn(Optional.of(user));
-        MvcResult result = this.mockMvc.perform(get("users/1"))
+                .willReturn (Optional.of(userDTO));
+        MvcResult result = this.mockMvc.perform(get("/users/1"))
                 .andExpect(status().isOk())
                 .andReturn();
         //On initialisz l'objet Gson pour la transformation
-        Gson json =new GsonBuilder().create();
-        UserDTO body = json.fromJson(
-                result.getResponse().getContentAsString(),
-                UserDTO.class
-                );
+        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
+        UserDTO body = json.fromJson(result.getResponse().getContentAsString(), UserDTO.class);
         Assertions.assertEquals(body.getFirstName(),this.userDto().getFirstName());
 
-    }*/
+    }
 
     @Test
     public void testSaveUser() throws Exception {
         // on creer notre cinema
         UserDTO userDTO= this.userDto();
         //On initialise notre json pour la creation
-        Gson json = new GsonBuilder().create();
+        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
         // on transforme notre obj en json
         String body = json.toJson(userDTO);
         this.mockMvc.perform(post("/users")
@@ -88,14 +85,17 @@ public class UserControllerTest {
     @Test
     public void testDeleteUser() throws Exception{
         //On Initialise l'objet Gson pour la transformation
-        Gson json = new GsonBuilder().create();
+        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
         String body = json.toJson(this.userDto());
-        this.mockMvc.perform(delete("users"));
+        this.mockMvc.perform(delete("/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body))
+                .andExpect(status().isOk());
     }
 
     private UserDTO userDto(){
         return new UserDTO(
-        "1xsi",
+        "1",
         "THERY",
         "Jeremie",
         "thery.jeremie@yahoo.fr",
