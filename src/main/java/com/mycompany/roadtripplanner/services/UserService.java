@@ -1,18 +1,19 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.user.UserDTO;
+import com.mycompany.roadtripplanner.dtos.user.UserDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserSaveDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserUpdateDTO;
 import com.mycompany.roadtripplanner.entities.User;
 import com.mycompany.roadtripplanner.repositories.UserRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@Service
+
 public class UserService {
 
     private ModelMapper mapper;
@@ -30,14 +31,14 @@ public class UserService {
 
     /**
      * Méthode qui permet de créer un utilisateur
-     * @param user
+     * @param userSaveDto
      * elle transforme l'objet relationnel en objet java
      * elle effectue la requete de notre transformation par le repository
      * Elle retransforme notre objet recupéré du repository
      * @return un utilisateur sauvegardé
      */
-    public UserDTO save(UserSaveDTO obj) {
-        User userToSave = mapper.map(obj, User.class);
+    public UserDTO save(UserSaveDTO userSaveDto) {
+        User userToSave = mapper.map(userSaveDto, User.class);
         User user = repository.save(userToSave);
         UserDTO userSaved = mapper.map(user, UserDTO.class);
         return userSaved;
@@ -66,11 +67,13 @@ public class UserService {
      * nous passerons ses valeur dans le UserDto
      * @return les informations de l'utilisateur
      */
-   public User find(String id) {
+   public Optional<UserDTO> find(String id) throws NoSuchElementException {
         Optional<User>userOptional = repository.findById(id);
-        User userDTO=null;
+        Optional<UserDTO> userDTO = null;
         if(userOptional.isPresent()){
-            userDTO= userOptional.get();
+           userDTO = Optional.of(mapper.map(userOptional.get(),UserDTO.class));
+        }else{
+            throw new NoSuchElementException("user is not found");
         }
         return userDTO;
     }
@@ -91,11 +94,11 @@ public class UserService {
 
     /**
      * Méthode qui supprimera l'utilisateur
-     * @param id
+     * @param userDeleteDTO
      * Elle envoie au repository la requête a supprimé qui possède cette id
      */
-    public void deleteById(String id) {
-        repository.deleteById(id);
+    public void delete(UserDeleteDTO userDeleteDTO) {
+        repository.delete(mapper.map(userDeleteDTO, User.class));
 
     }
 }
