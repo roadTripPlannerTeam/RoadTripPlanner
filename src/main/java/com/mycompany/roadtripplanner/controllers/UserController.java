@@ -1,14 +1,15 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.user.UserDTO;
+import com.mycompany.roadtripplanner.dtos.user.UserDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserSaveDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserUpdateDTO;
-import com.mycompany.roadtripplanner.entities.User;
 import com.mycompany.roadtripplanner.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/users")
@@ -46,11 +47,12 @@ public class UserController {
      * @return l'utisateur ainsi que c'est information si l'utilisateur existe
      */
     @GetMapping("{id}")
-    public ResponseEntity<User> findById(@PathVariable String id ){
-        User userDto = service.find(id);
-        if(userDto ==null)
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(userDto);
+    public ResponseEntity<UserDTO> findById(@PathVariable String id ){
+        try{
+            return ResponseEntity.ok(service.find(id).get());
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().header(e.getMessage()).build();
+        }
     }
 
     /**
@@ -69,9 +71,9 @@ public class UserController {
      * @param id
      * @return une réponse true si l'utilisateur à bien était suppprimé
      */
-    @DeleteMapping("{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable String id){
-        service.deleteById(id);
-        return ResponseEntity.ok(true);
+    @DeleteMapping()
+    public ResponseEntity<String> delete(@RequestBody UserDeleteDTO userDeleteDTO){
+        service.delete(userDeleteDTO);
+        return ResponseEntity.ok("user is delete with success");
     }
 }
