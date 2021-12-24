@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/budgets")
@@ -45,11 +47,11 @@ public class BudgetController {
      */
     @GetMapping("{id}")
     public ResponseEntity<BudgetDTO> find(@PathVariable String id){
-        BudgetDTO budgetDTO = service.find(id);
-        if(budgetDTO == null) {
-            return ResponseEntity.notFound().build();
+        try{
+            return ResponseEntity.ok(service.find(id).get());
+        } catch(NoSuchElementException e){
+            return ResponseEntity.notFound().header(e.getMessage()).build();
         }
-        return ResponseEntity.ok(budgetDTO);
     }
 
     /**

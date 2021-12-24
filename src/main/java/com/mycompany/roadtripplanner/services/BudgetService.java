@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class BudgetService {
@@ -49,11 +50,13 @@ public class BudgetService {
      * @param id
      * @return l'objet budgetDTO
      */
-    public BudgetDTO find(String id){
-        Optional<Budget> b = repository.findById(id);
-        BudgetDTO budgetDTO = null;
-        if(b.isPresent()){
-            budgetDTO = mapper.map(b.get(), BudgetDTO.class);
+    public Optional<BudgetDTO> find(String id) throws NoSuchElementException {
+        Optional<Budget> budgetOptional = repository.findById(id);
+        Optional<BudgetDTO> budgetDTO = null;
+        if(budgetOptional.isPresent()){
+            budgetDTO = Optional.of(mapper.map(budgetOptional.get(), BudgetDTO.class));
+        } else {
+            throw new NoSuchElementException("Ce budget n'existe pas");
         }
         return  budgetDTO;
     }

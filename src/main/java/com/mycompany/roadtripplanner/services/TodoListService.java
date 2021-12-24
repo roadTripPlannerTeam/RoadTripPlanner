@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class TodoListService {
@@ -49,11 +50,13 @@ public class TodoListService {
      * @param id
      * @return un objet todolist
      */
-    public TodoListDTO find(String id){
-        Optional<TodoList> t = repository.findById(id);
-        TodoListDTO todoListDTO = null;
-        if(t.isPresent()){
-            todoListDTO = mapper.map(t.get(), TodoListDTO.class);
+    public Optional<TodoListDTO> find(String id) throws NoSuchElementException {
+        Optional<TodoList> todoListOptional = repository.findById(id);
+        Optional<TodoListDTO> todoListDTO = null;
+        if(todoListOptional.isPresent()){
+            todoListDTO = Optional.of(mapper.map(todoListOptional.get(), TodoListDTO.class));
+        } else {
+            throw new NoSuchElementException("Cette todolist n'existe pas");
         }
         return todoListDTO;
     }

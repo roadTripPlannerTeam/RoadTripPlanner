@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/todolists")
@@ -48,11 +49,11 @@ public class TodoListController {
      */
     @GetMapping("{id}")
     public ResponseEntity<TodoListDTO> find(@PathVariable String id){
-        TodoListDTO todoListDTO = service.find(id);
-        if(todoListDTO == null){
-            return ResponseEntity.notFound().build();
+        try{
+            return ResponseEntity.ok(service.find(id).get());
+        } catch (NoSuchElementException e){
+            return ResponseEntity.notFound().header(e.getMessage()).build();
         }
-        return ResponseEntity.ok(todoListDTO);
     }
 
     /**
