@@ -1,6 +1,7 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
+import com.mycompany.roadtripplanner.dtos.budget.BudgetDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Budget;
@@ -67,30 +68,26 @@ public class BudgetService {
      * @return l'objet budget créé
      */
     public BudgetDTO save(BudgetSaveDTO obj){
-        Budget budgetToSave = mapper.map(obj, Budget.class);
-        Budget budget = repository.save(budgetToSave);
-        BudgetDTO budgetSaved = mapper.map(budget, BudgetDTO.class);
+        BudgetDTO budgetSaved = mapper.map(repository.save(mapper.map(obj, Budget.class)), BudgetDTO.class);
         return budgetSaved;
     }
 
     /**
      * Va modifier l'objet budget
-     * @param obj
+     * @param budgetUpdateDTO
      * @return l'objet budget modifié
      */
-    public BudgetDTO update(BudgetUpdateDTO obj){
-        Budget bugetToUpdate = mapper.map(obj, Budget.class);
-        Budget budget = repository.save(bugetToUpdate);
-        BudgetDTO budgetSaved = mapper.map(budget, BudgetDTO.class);
+    public BudgetDTO update(BudgetUpdateDTO budgetUpdateDTO){
+        BudgetDTO budgetSaved = mapper.map(repository.save(mapper.map(budgetUpdateDTO, Budget.class)), BudgetDTO.class);
         return budgetSaved;
     }
 
     /**
      * Va supprimer un objet budget grâce à son Id
-     * @param id
+     * @param  budgetDeleteDTO
      */
-    public void delete(String id){
-        repository.deleteById(id);
+    public void delete(BudgetDeleteDTO budgetDeleteDTO){
+        repository.delete( mapper.map(budgetDeleteDTO,Budget.class));
     }
 
 }

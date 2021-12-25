@@ -1,6 +1,7 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
+import com.mycompany.roadtripplanner.dtos.budget.BudgetDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
 import com.mycompany.roadtripplanner.services.BudgetService;
@@ -76,12 +77,12 @@ public class BudgetController {
 
     /**
      * Créé la route pour supprimer un objet budget via son Id
-     * @param id
+     * @param budgetDeleteDTO
      * @return un statut Http 200 ok true
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable String id){
-        service.delete(id);
-        return ResponseEntity.ok(true);
+    @DeleteMapping()
+    public ResponseEntity<String> delete(@RequestBody BudgetDeleteDTO budgetDeleteDTO){
+        service.delete(budgetDeleteDTO);
+        return ResponseEntity.ok("budget bien supprimé ");
     }
 }

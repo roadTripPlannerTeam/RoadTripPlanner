@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BudgetSaveDTO {
-
+    private String id ;
     private float initialAmount;
     private float expense;
 }

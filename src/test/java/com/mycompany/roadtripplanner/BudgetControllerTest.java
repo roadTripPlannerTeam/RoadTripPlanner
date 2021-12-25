@@ -7,7 +7,7 @@ import com.mycompany.roadtripplanner.controllers.BudgetController;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
-import com.mycompany.roadtripplanner.entities.Budget;
+import com.mycompany.roadtripplanner.repositories.BudgetRepositoryImpl;
 import com.mycompany.roadtripplanner.services.BudgetService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,6 +35,8 @@ public class BudgetControllerTest {
     private  MockMvc mockMvc;
     @MockBean
     private BudgetService service;
+
+
     @MockBean
     private ModelMapper mapper;
 
@@ -71,9 +74,12 @@ public class BudgetControllerTest {
         // Création d'un budget de test
         BudgetDTO budgetDTOTest = this.createBudgetDTOTest();
         // J'appelle Mockito pour simuler le service
-        BDDMockito.given(service.find("5")).willReturn(Optional.of(budgetDTOTest));
+        BDDMockito.given(service.find("5"))
+                .willReturn(Optional.of(budgetDTOTest));
         // Je teste la route qui permet de récupérer un budget
-        MvcResult result = this.mockMvc.perform(get("/budgets/5")).andExpect(status().isOk()).andReturn();
+        MvcResult result = this.mockMvc.perform(get("/budgets/5"))
+                .andExpect(status().isOk())
+                .andReturn();
         // Je transforme du format Json récupéré en BudgetDTO
         Gson json = new GsonBuilder().create();
         BudgetDTO body = json.fromJson(result.getResponse().getContentAsString(), BudgetDTO.class);
@@ -102,66 +108,72 @@ public class BudgetControllerTest {
                 .andExpect(status().isCreated());
     }
 
+
     @Test
     public void testUpdateBudget() throws Exception{
         // Je créé deux budget de test
         BudgetDTO budgetDTOTest = this.createBudgetDTOTest();
-        BudgetUpdateDTO budgetDTOUpdate = this.updateBudgetDTOTest();
+        BudgetDTO budgetDTOUpdate = this.updateBudgetDTOTest();
 
         // J'appelle BDDMockito pour simuler le budget service
-        BDDMockito.given(service.find("5")).willReturn(Optional.of(budgetDTOTest));
+        BDDMockito.given(service.find("5"))
+                .willReturn(Optional.of(budgetDTOTest));
         // Je teste la route qui permet de récupérer un budget
-        MvcResult result = this.mockMvc.perform(get("/budgets/5")).andExpect(status().isOk()).andReturn();
+        MvcResult result = this.mockMvc.perform(get("/budgets/5"))
+                                        .andExpect(status().isOk())
+                                        .andReturn();
+
         // Je transforme du format Json récupéré en budgetDTO
-        Gson json = new GsonBuilder().create();
+        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
         BudgetUpdateDTO body = json.fromJson(result.getResponse().getContentAsString(), BudgetUpdateDTO.class);
         // Mockito peut prendre un objet de type BudgetSaveDTO
-        BDDMockito.when(service.save(any(BudgetSaveDTO.class))).thenReturn(budgetDTOUpdate);
+        BDDMockito.when(service.update(any(BudgetUpdateDTO.class)))
+                .thenReturn(budgetDTOUpdate);
 
         // Qu'il va modifier
         String bodyToSave = json.toJson(body);
         MvcResult resultUpdated = this.mockMvc.perform(put("/budgets")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(bodyToSave))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(bodyToSave))
                 .andExpect(status().isOk())
                 .andReturn();
-
         // Je transforme le format Json en BudgetDTO
+        String result1 = resultUpdated.getResponse().getContentAsString();
         BudgetDTO finalBody = json.fromJson(resultUpdated.getResponse().getContentAsString(), BudgetDTO.class);
         // Je teste les assertions
         Assertions.assertEquals(finalBody.getExpense(), this.updateBudgetDTOTest().getExpense());
     }
 
     /**
-     * Teste la route pour supprimer un budget
-     * @throws Exception
-     */
-    @Test
-    public void testDeleteBudget() throws Exception {
-        // J'initialise un objet Gson pour la transformation en Json
-        Gson json = new GsonBuilder().create();
-        // Je créé un budget qui sera en Json (donc en String)
-        String body = json.toJson(this.createBudgetDTOTest());
-        // Je teste la route qui permet de supprimer un budget
-        this.mockMvc.perform(delete("/budgets")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
-                        .andExpect(status().isOk());
-    }
-
-    /**
      * Créé un budgetDTO utilisé pour le test save
      * @return BudgetDTO
      */
-    public BudgetDTO createBudgetDTOTest(){
+    private BudgetDTO createBudgetDTOTest(){
         return new BudgetDTO("5", 5000F, 100F);
     }
 
     /**
      * Créé un budgetUpdateUpdateDTO utilisé pour l'update
-     * @return BudgetDTO
+     * @return BudgetUpdateDTO
      */
-    public BudgetUpdateDTO updateBudgetDTOTest(){
-        return new BudgetUpdateDTO("5", 3000F, 50F);
+    private BudgetDTO updateBudgetDTOTest(){
+        return new BudgetDTO ("5", 3000F, 50F);
     }
+
+    @Test
+    public void testDeleteBudget() throws Exception{
+
+        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
+
+        BudgetDTO budgetDTO = this.createBudgetDTOTest();
+
+        String body = json.toJson(budgetDTO);
+                 mockMvc.perform(delete("/budgets")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isOk());
+
+        //
+    }
+
 }
