@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class ItineraryConfiguration {
 
     @Bean
-    public ItineraryService commentService(ItineraryRepositoryImpl repository, ModelMapper mapper, CommentRepositoryImpl commentRepository){
+    public ItineraryService itineraryService(ItineraryRepositoryImpl repository, ModelMapper mapper, CommentRepositoryImpl commentRepository){
         return new ItineraryService(mapper, repository,commentRepository);
     }
 
