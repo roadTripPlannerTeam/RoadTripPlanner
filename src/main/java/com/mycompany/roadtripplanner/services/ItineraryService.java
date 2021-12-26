@@ -8,18 +8,17 @@ import com.mycompany.roadtripplanner.entities.Itinerary;
 import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.ItineraryRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class ItineraryService {
 
     private ModelMapper mapper;
     private ItineraryRepositoryImpl repository;
-    private CommentRepositoryImpl Commentrepository;
+    private CommentRepositoryImpl commentrepository;
 
     /**
      * Constructeur pour le mapper et l'interface repository
@@ -30,7 +29,7 @@ public class ItineraryService {
     public ItineraryService(ModelMapper mapper, ItineraryRepositoryImpl repository, CommentRepositoryImpl commentrepository) {
         this.mapper = mapper;
         this.repository = repository;
-        Commentrepository = commentrepository;
+        this.commentrepository = commentrepository;
     }
 
     /**
@@ -53,6 +52,7 @@ public class ItineraryService {
     public List<ItineraryDTO> findAll() {
         List<ItineraryDTO>itineraries = new ArrayList<>();
         repository.findAll().forEach(itinerarie -> {
+            itinerarie.setComments( commentrepository.findCommentsByItinerary_Id(itinerarie.getId()));
             System.out.println(itinerarie);
             itineraries.add(mapper.map(itinerarie,ItineraryDTO.class));
         });
