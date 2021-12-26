@@ -31,7 +31,7 @@ public class PositionController {
      * @return List<PositionGetDTO>
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public List<PositionGetDTO> findAll() {
         return service.findAll();
     }
