@@ -1,6 +1,7 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Comment;
@@ -30,17 +31,15 @@ public class CommentService {
 
     /**
      * Méthode qui permet de créer un commentaire
-     * @param comment
+     * @param commentSaveDTO
      * elle transforme l'objet relationnel en objet java
      * elle effectue la requete de notre transformation par le repository
      * Elle retransforme notre objet recupéré du repository
      * @return un commentaire sauvegardé
      */
-    public CommentDTO save(CommentSaveDTO obj) {
-        Comment commentToSave = mapper.map(obj, Comment.class);
-        Comment comment = repository.save(commentToSave);
-        CommentDTO commentSaved = mapper.map(comment, CommentDTO.class);
-        return commentSaved;
+    public CommentGetSaveDTO save(CommentSaveDTO commentSaveDTO) {
+        return mapper.map(repository.save(mapper.map(commentSaveDTO, Comment.class)), CommentGetSaveDTO.class);
+
     }
 
     /**

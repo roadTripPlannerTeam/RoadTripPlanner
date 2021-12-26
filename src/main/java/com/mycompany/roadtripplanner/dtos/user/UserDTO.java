@@ -1,11 +1,14 @@
 package com.mycompany.roadtripplanner.dtos.user;
 
+import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
 import com.mycompany.roadtripplanner.entities.Adress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,5 +23,5 @@ public class UserDTO {
     private Date bithday;
     private Adress adress;
     private String profilPicture;
-
+    private List<CommentGetDTO> comments ;
 }

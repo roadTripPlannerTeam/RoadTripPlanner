@@ -3,14 +3,12 @@ package com.mycompany.roadtripplanner.dtos.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCommentDTO {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    //private CommentRelationDTO comment;
+public class UserCommentGetSaveDTO {
+ private     String id ;
 }

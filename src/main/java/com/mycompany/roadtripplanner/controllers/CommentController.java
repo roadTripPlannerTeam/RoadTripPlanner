@@ -1,6 +1,7 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Comment;
@@ -27,7 +28,7 @@ public class CommentController {
      * @return l'utilisateur sauvegardé
      */
     @PostMapping()
-    public CommentDTO save(@RequestBody CommentSaveDTO comment){
+    public CommentGetSaveDTO save(@RequestBody CommentSaveDTO comment){
         return service.save(comment);
     }
 
