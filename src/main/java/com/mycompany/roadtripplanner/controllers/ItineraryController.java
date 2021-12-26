@@ -1,14 +1,15 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
-import com.mycompany.roadtripplanner.entities.Itinerary;
 import com.mycompany.roadtripplanner.services.ItineraryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("itinerary")
@@ -46,11 +47,12 @@ public class ItineraryController {
      * @return l'itineraire avec c'est information si le commentaire existe
      */
     @GetMapping("{id}")
-    public ResponseEntity<Itinerary> find(@PathVariable String id){
-        Itinerary itinerary = service.find(id);
-        if(itinerary == null)
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(itinerary);
+    public ResponseEntity<ItineraryDTO> find(@PathVariable String id){
+        try {
+            return ResponseEntity.ok(service.find(id).get());
+        }catch (NoSuchElementException e){
+            return ResponseEntity.notFound().header(e.getMessage()).build();
+        }
     }
 
     /**
@@ -67,12 +69,12 @@ public class ItineraryController {
 
     /**
      * Controlleur qui demande au service de supprimer un itineraire par l'id donné dans le path variable
-     * @param id
+     * @param itineraryDeleteDTO
      * @return une réponse true si l'itineraire' à bien était suppprimé
      */
-    @DeleteMapping("{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable String id){
-        service.deleteById(id);
-        return ResponseEntity.ok(true);
+    @DeleteMapping()
+    public ResponseEntity<String> delete(@RequestBody ItineraryDeleteDTO itineraryDeleteDTO){
+        service.delete(itineraryDeleteDTO);
+        return ResponseEntity.ok("Itinerary is delete with success");
     }
 }
