@@ -20,9 +20,15 @@ public class Itinerary {
     private String title;
     private String experienceFeedback;
     private float nbStars;
-  //  private TodoList todoList;
-  //  private Budget budget
-    List<Comment> comments;
+
+    @DBRef
+    private TodoList todoList;
+
+    @DBRef
+    private Budget budget;
+
+    @DBRef
+    private List<Comment> comments;
 
   //   Map<Date, Stage> toto;
 }
