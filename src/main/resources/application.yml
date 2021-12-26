@@ -6,5 +6,8 @@ spring:
       host: localhost
       port: 27017
 
+      database: road-trip-test   #� changer en fonction de notre base
+
 server:
   port: 8080
+
