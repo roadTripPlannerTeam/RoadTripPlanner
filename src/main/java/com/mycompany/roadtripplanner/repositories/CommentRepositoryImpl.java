@@ -10,4 +10,6 @@ import java.util.List;
 public interface CommentRepositoryImpl extends MongoRepository<Comment,String> {
 
     List<Comment> findCommentsByUserId(String id );
+
+    List<Comment> findCommentsByItinerary_Id(String id);
 }
