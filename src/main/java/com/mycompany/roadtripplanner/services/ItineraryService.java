@@ -5,6 +5,7 @@ import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Itinerary;
+import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.ItineraryRepositoryImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,15 +19,18 @@ public class ItineraryService {
 
     private ModelMapper mapper;
     private ItineraryRepositoryImpl repository;
+    private CommentRepositoryImpl Commentrepository;
 
     /**
      * Constructeur pour le mapper et l'interface repository
      * @param mapper
      * @param repository
      */
-    public ItineraryService(ModelMapper mapper, ItineraryRepositoryImpl repository) {
+
+    public ItineraryService(ModelMapper mapper, ItineraryRepositoryImpl repository, CommentRepositoryImpl commentrepository) {
         this.mapper = mapper;
         this.repository = repository;
+        Commentrepository = commentrepository;
     }
 
     /**
