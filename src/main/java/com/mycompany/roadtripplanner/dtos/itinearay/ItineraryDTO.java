@@ -19,6 +19,6 @@ public class ItineraryDTO {
     private float nbStars;
     private TodoListDTO todoList;
     private BudgetDTO budget;
-    //private List<Comment> comments;
+    private List<Comment> comments;
 //    private Map<>;
 }
