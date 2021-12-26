@@ -1,6 +1,6 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.itinearay.ItenaryGetSaveDTO;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
@@ -29,7 +29,7 @@ public class ItineraryController {
      */
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public ItenaryGetSaveDTO save(@RequestBody ItinerarySaveDTO itinerary){
+    public ItineraryGetSaveDTO save(@RequestBody ItinerarySaveDTO itinerary){
         return service.save(itinerary);
     }
 

@@ -1,6 +1,6 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.itinearay.ItenaryGetSaveDTO;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
@@ -34,8 +34,8 @@ public class ItineraryService {
      * @param itinerarySaveDTO
      * @return
      */
-    public ItenaryGetSaveDTO save(ItinerarySaveDTO itinerarySaveDTO) {
-      return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItenaryGetSaveDTO.class);
+    public ItineraryGetSaveDTO save(ItinerarySaveDTO itinerarySaveDTO) {
+      return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
 
     }
 
