@@ -68,7 +68,7 @@ public class UserController {
 
     /**
      * Controlleur qui demande au service de supprimer un utilisateur par l'id donné dans le path variable
-     * @param id
+     * @param userDeleteDTO
      * @return une réponse true si l'utilisateur à bien était suppprimé
      */
     @DeleteMapping()
