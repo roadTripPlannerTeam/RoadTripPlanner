@@ -1,33 +1,27 @@
-package com.mycompany.roadtripplanner.entities;
+package com.mycompany.roadtripplanner.dtos.user;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
+import com.mycompany.roadtripplanner.entities.Adress;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
-@Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    //Attribut
-    @Id
+public class UserDTO {
+
     private String id;
     private String firstName;
     private String lastName;
     private String email;
-    private String Password;
+    private String password;
     private Date bithday;
-    private Adress Adress;
+    private Adress adress;
     private String profilPicture;
-
-    @DBRef
-    private List<Comment>comments;
-
+    private List<CommentGetDTO> comments ;
 }

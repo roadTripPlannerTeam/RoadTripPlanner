@@ -1,6 +1,5 @@
 package com.mycompany.roadtripplanner.entities;
 
-import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,19 +14,15 @@ import java.util.List;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    //Attribut
+public class Itinerary {
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String Password;
-    private Date bithday;
-    private Adress Adress;
-    private String profilPicture;
+    private String title;
+    private String experienceFeedback;
+    private float nbStars;
+  //  private TodoList todoList;
+  //  private Budget budget
+    List<Comment> comments;
 
-    @DBRef
-    private List<Comment>comments;
-
+  //   Map<Date, Stage> toto;
 }
