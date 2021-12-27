@@ -18,10 +18,6 @@ public class BudgetService {
     BudgetRepositoryImpl repository;
     ModelMapper mapper;
 
-    public BudgetService(ModelMapper mapper, BudgetRepositoryImpl repository) {
-        this.mapper = mapper;
-        this.repository = repository;
-    }
 
     /**
      * Constructeur de BudgetService
@@ -29,10 +25,13 @@ public class BudgetService {
      * @param repository
      * @param mapper
      */
-    public BudgetService(BudgetRepositoryImpl repository, ModelMapper mapper){
-        this.repository = repository;
+    public BudgetService(ModelMapper mapper, BudgetRepositoryImpl repository) {
         this.mapper = mapper;
+        this.repository = repository;
     }
+
+
+
 
     /**
      * Va retourner une liste de tous les budgets

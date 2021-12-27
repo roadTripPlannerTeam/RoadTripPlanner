@@ -35,7 +35,8 @@ public class ItineraryController {
 
     /**
      * Controlleur qui demande au service une list de itineraire
-     * @return une liste d'itineraire
+     * @return  List <ItineraryDTO>
+     *
      */
     @GetMapping()
     public List<ItineraryDTO> findAll(){

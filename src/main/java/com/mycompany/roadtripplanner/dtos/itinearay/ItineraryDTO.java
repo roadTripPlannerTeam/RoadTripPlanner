@@ -2,6 +2,7 @@ package com.mycompany.roadtripplanner.dtos.itinearay;
 
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserGetSaveDTO;
@@ -23,7 +24,5 @@ public class ItineraryDTO {
     private TodoListDTO todoList;
     private BudgetDTO budget;
     private UserGetSaveDTO user;
-    private List<CommentDTO> comments;
-
-
+    private List<CommentGetDTO> comments;
 }

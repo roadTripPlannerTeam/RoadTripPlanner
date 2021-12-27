@@ -22,6 +22,4 @@ public class ItinerarySaveDTO {
     private TodoListRelationDTO todoList;
     private BudgetRelationDTO budget;
     private UserRelationDTO user;
-
-
 }
