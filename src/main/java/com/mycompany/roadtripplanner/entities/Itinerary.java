@@ -30,5 +30,8 @@ public class Itinerary {
     @DBRef
     private List<Comment> comments;
 
-  //   Map<Date, Stage> toto;
+    @DBRef
+    private  User user;
+
+    //   Map<Date, Stage> toto;
 }
