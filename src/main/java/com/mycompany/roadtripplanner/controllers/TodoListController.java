@@ -38,6 +38,7 @@ public class TodoListController {
      * @return list de todolists
      */
     @GetMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public List<TodoListDTO> findAll(){
         return service.findAll();
     }

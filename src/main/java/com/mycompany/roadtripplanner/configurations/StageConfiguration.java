@@ -9,10 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StageConfiguration {
     @Bean
-    public StageService stageService(
-            ModelMapper mapper,
-            StageRepositoryImpl repository
-    ) {
+    public StageService stageService(ModelMapper mapper, StageRepositoryImpl repository) {
         return new StageService(mapper, repository);
     }
 }

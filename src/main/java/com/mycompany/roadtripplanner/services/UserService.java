@@ -3,8 +3,10 @@ package com.mycompany.roadtripplanner.services;
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
 import com.mycompany.roadtripplanner.dtos.user.*;
 import com.mycompany.roadtripplanner.entities.Comment;
+import com.mycompany.roadtripplanner.entities.Itinerary;
 import com.mycompany.roadtripplanner.entities.User;
 import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
+import com.mycompany.roadtripplanner.repositories.ItineraryRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.UserRepositoryImpl;
 import org.modelmapper.ModelMapper;
 
@@ -19,15 +21,17 @@ public class UserService {
     private ModelMapper mapper;
     private UserRepositoryImpl repository;
     private CommentRepositoryImpl commentRepository;
+    private ItineraryRepositoryImpl itineraryRepository;
     /**
      * Constructeur pour le modèle mapper et je l'interface repository
      * @param mapper
      * @param repository
      */
-    public UserService(ModelMapper mapper, UserRepositoryImpl repository,CommentRepositoryImpl commentRepository) {
+    public UserService(ModelMapper mapper, UserRepositoryImpl repository, CommentRepositoryImpl commentRepository, ItineraryRepositoryImpl itineraryRepository) {
         this.mapper = mapper;
         this.repository = repository;
         this.commentRepository = commentRepository;
+        this.itineraryRepository = itineraryRepository;
     }
 
     /**
@@ -39,9 +43,7 @@ public class UserService {
      * @return un utilisateur sauvegardé
      */
     public UserGetSaveDTO save(UserSaveDTO userSaveDto) {
-
        return  mapper.map(repository.save(mapper.map(userSaveDto, User.class)), UserGetSaveDTO.class);
-
     }
 
     /**
@@ -54,8 +56,10 @@ public class UserService {
     public List<UserDTO>findAll(){
         List<UserDTO>users = new ArrayList<>();
          repository.findAll().forEach(user -> {
-            List<Comment> commentsByUserId=  commentRepository.findCommentsByUserId(user.getId());
+             List<Itinerary> itinerariesByUserId=  itineraryRepository.findItinerariesByUser_Id(user.getId());
+             List<Comment> commentsByUserId=  commentRepository.findCommentsByUserId(user.getId());
             user.setComments(commentsByUserId);
+            user.setItineraries(itinerariesByUserId);
             users.add(mapper.map(user,UserDTO.class));
          });
         return users;

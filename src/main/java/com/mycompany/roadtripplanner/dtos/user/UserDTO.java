@@ -2,7 +2,9 @@ package com.mycompany.roadtripplanner.dtos.user;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetDTO;
 import com.mycompany.roadtripplanner.entities.Adress;
+import com.mycompany.roadtripplanner.entities.Itinerary;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,4 +26,6 @@ public class UserDTO {
     private Adress adress;
     private String profilPicture;
     private List<CommentGetDTO> comments ;
+    private List<ItineraryGetDTO> itineraries ;
+
 }

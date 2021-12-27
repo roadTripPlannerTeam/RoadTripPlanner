@@ -35,7 +35,7 @@ public class StageController {
      * @return List<StageGetDTO>
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public List<StageGetDTO> findAll() {
         return service.findAll();
     }

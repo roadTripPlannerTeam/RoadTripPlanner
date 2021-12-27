@@ -30,4 +30,6 @@ public class User {
     @DBRef
     private List<Comment>comments;
 
+    @DBRef
+    private List<Itinerary> itineraries;
 }

@@ -1,5 +1,6 @@
 package com.mycompany.roadtripplanner.dtos.budget;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BudgetSaveDTO {
-    private float initialAmount;
-    private float expense;
+public class BudgetRelationDTO {
+    private  String id ;
+
 }
