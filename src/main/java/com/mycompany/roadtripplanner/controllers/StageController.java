@@ -4,10 +4,6 @@ import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
 import com.mycompany.roadtripplanner.services.StageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,7 +83,7 @@ public class StageController {
     @DeleteMapping
     public ResponseEntity<String> delete(@RequestBody StageDeleteDTO stage) {
         service.delete(stage);
-        return ResponseEntity.ok("stage bien supprimé");
+        return ResponseEntity.ok("stage bien supprimée");
     }
 
 }
