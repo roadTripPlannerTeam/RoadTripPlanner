@@ -85,7 +85,7 @@ public class UserService {
      * Elle transformera l'objet recupérer du repository
      * @return un utilisateur avec les informations modifier
      */
-    public Object update(UserUpdateDTO userUpdateDTO) {
+    public UserDTO update(UserUpdateDTO userUpdateDTO) {
         User userToSave = mapper.map(userUpdateDTO,User.class);
         User userSaving = repository.save(userToSave);
         UserDTO userRetour= mapper.map(userSaving,UserDTO.class);
