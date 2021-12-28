@@ -136,6 +136,7 @@ public class UserControllerTest {
         new Date(),
         new Adress(),
         "123684IMAGE"
+
         );
     }
     private UserDTO userUPDATEDTO(){
