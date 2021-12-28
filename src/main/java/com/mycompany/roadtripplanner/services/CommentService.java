@@ -70,7 +70,7 @@ public class CommentService {
      * nous passerons ses valeur dans le CommentDto
      * @return les informations du commentaire
      */
-    public Optional<CommentDTO> find(String id) {
+    public Optional<CommentDTO> find(String id)throws NoSuchElementException {
         Optional<Comment> commentOptional = repository.findById(id);
         Optional<CommentDTO>commentDTO = null;
 
@@ -103,6 +103,5 @@ public class CommentService {
      */
     public void delete(CommentDeleteDTO commentDeleteDTO) {
         repository.delete(mapper.map(commentDeleteDTO,Comment.class));
-
     }
 }
