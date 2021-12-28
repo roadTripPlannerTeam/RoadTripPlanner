@@ -32,7 +32,7 @@ public class ItineraryService {
 
     /**
      *
-     * @param itinerary
+         * @param itineraryObj
      * @return
      */
     public ItineraryDTO save(ItinerarySaveDTO itineraryObj) {
@@ -66,10 +66,9 @@ public class ItineraryService {
      * nous passerons ses valeur dans le ItineraryDto
      * @return les informations d'un itineraire'
      */
-    public Optional<ItineraryDTO> find(String id) {
+    public Optional<ItineraryDTO> find(String id) throws NoSuchElementException {
         Optional<Itinerary>itineraryOptional =repository.findById(id);
         Optional<ItineraryDTO>itineraryDTO = null;
-
 
         if (itineraryOptional.isPresent()) {
             itineraryDTO = Optional.of(mapper.map(itineraryDTO.get(),ItineraryDTO.class));
@@ -95,7 +94,7 @@ public class ItineraryService {
 
     /**
      * Méthode qui supprimera l'itineraire'
-     * @param id
+     * @param itineraryDeleteDTO
      * Elle envoie au repository la requête a supprimé qui possède cette id
      */
     public void delete(ItineraryDeleteDTO itineraryDeleteDTO) {
