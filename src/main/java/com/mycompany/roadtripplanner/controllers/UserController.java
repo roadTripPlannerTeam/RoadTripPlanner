@@ -61,13 +61,13 @@ public class UserController {
      * @return une reponse du service si la modification est un succès avec les nouvelles informations
      */
     @PutMapping()
-    public ResponseEntity<Object> update(@RequestBody UserUpdateDTO userUpdateDTO){
+    public ResponseEntity<UserDTO> update(@RequestBody UserUpdateDTO userUpdateDTO){
         return  ResponseEntity.ok(service.update(userUpdateDTO));
     }
 
     /**
      * Controlleur qui demande au service de supprimer un utilisateur par l'id donné dans le path variable
-     * @param id
+     * @param userDeleteDTO
      * @return une réponse true si l'utilisateur à bien était suppprimé
      */
     @DeleteMapping()
