@@ -111,7 +111,6 @@ public class StageControllerTest {
         BDDMockito.when(service.update(any(StageUpdateDTO.class)))
                 .thenReturn(stageGetUpdateDTO);
         // modif
-        body.setName("stage2");
         String bodyToSave = json.toJson(body);
         MvcResult resultUpdated = this.mockMvc.perform(put("/stages")
                 .contentType(MediaType.APPLICATION_JSON)
