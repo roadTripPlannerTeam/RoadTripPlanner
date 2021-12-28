@@ -2,6 +2,7 @@ package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Itinerary;
@@ -12,6 +13,7 @@ import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class ItineraryService {
@@ -67,13 +69,16 @@ public class ItineraryService {
      * nous passerons ses valeur dans le ItineraryDto
      * @return les informations d'un itineraire'
      */
-    public Itinerary find(String id) {
+    public Optional<ItineraryDTO> find(String id) throws NoSuchElementException {
         Optional<Itinerary>itineraryOptional =repository.findById(id);
-        Itinerary itineraryDto = null;
+        Optional<ItineraryDTO>itineraryDTO = null;
+
         if (itineraryOptional.isPresent()) {
-            itineraryDto = itineraryOptional.get();
+            itineraryDTO = Optional.of(mapper.map(itineraryDTO.get(),ItineraryDTO.class));
+        }else{
+            throw new NoSuchElementException("itinerary is not found");
         }
-        return itineraryDto;
+        return itineraryDTO;
     }
 
     /**
@@ -92,10 +97,10 @@ public class ItineraryService {
 
     /**
      * Méthode qui supprimera l'itineraire'
-     * @param id
+     * @param itineraryDeleteDTO
      * Elle envoie au repository la requête a supprimé qui possède cette id
      */
-    public void deleteById(String id) {
-        repository.deleteById(id);
+    public void delete(ItineraryDeleteDTO itineraryDeleteDTO) {
+        repository.delete(mapper.map(itineraryDeleteDTO,Itinerary.class));
     }
 }
