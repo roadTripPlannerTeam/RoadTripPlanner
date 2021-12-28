@@ -1,6 +1,5 @@
 package com.mycompany.roadtripplanner.entities;
 
-import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,27 +8,20 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    //Attribut
+public class Comment {
     @Id
     private String id;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String Password;
-    private Date bithday;
-    private Adress Adress;
-    private String profilPicture;
-
+    private String title;
+    private String description;
+    private Date date;
+    private int like;
     @DBRef
-    private List<Comment>comments;
-
+    private User user;
     @DBRef
-    private List<Itinerary> itineraries;
+    private Itinerary itinerary;
 }
