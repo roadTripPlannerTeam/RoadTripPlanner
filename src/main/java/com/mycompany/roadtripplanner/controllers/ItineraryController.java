@@ -1,10 +1,12 @@
 package com.mycompany.roadtripplanner.controllers;
 
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
 import com.mycompany.roadtripplanner.services.ItineraryService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +29,15 @@ public class ItineraryController {
      * @return un itinéraire sauvegardé
      */
     @PostMapping()
-    public ItineraryDTO save(@RequestBody ItinerarySaveDTO itinerary){
+    @ResponseStatus(HttpStatus.CREATED)
+    public ItineraryGetSaveDTO save(@RequestBody ItinerarySaveDTO itinerary){
         return service.save(itinerary);
     }
 
     /**
      * Controlleur qui demande au service une list de itineraire
-     * @return une liste d'itineraire
+     * @return  List <ItineraryDTO>
+     *
      */
     @GetMapping()
     public List<ItineraryDTO> findAll(){

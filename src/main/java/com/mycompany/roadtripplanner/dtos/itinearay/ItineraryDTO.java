@@ -1,5 +1,11 @@
 package com.mycompany.roadtripplanner.dtos.itinearay;
 
+import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
+import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
+import com.mycompany.roadtripplanner.dtos.user.UserDTO;
+import com.mycompany.roadtripplanner.dtos.user.UserGetSaveDTO;
 import com.mycompany.roadtripplanner.entities.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,8 +21,8 @@ public class ItineraryDTO {
     private String title;
     private String experienceFeedback;
     private float nbStars;
-//  private TodoList todoList;
-//  private Budget budget
-    List<Comment> comments;
-//    private Map<>;
+    private TodoListDTO todoList;
+    private BudgetDTO budget;
+    private UserGetSaveDTO user;
+    private List<CommentGetDTO> comments;
 }

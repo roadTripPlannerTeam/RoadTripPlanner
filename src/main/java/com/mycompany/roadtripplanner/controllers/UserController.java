@@ -1,10 +1,8 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.user.UserDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserSaveDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.user.*;
 import com.mycompany.roadtripplanner.services.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +25,8 @@ public class UserController {
      * @return l'utilisateur sauvegardé
      */
     @PostMapping()
-    public UserDTO save(@RequestBody UserSaveDTO user){
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserGetSaveDTO save(@RequestBody UserSaveDTO user){
         return service.save(user);
     }
 

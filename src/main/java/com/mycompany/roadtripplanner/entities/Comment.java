@@ -22,4 +22,6 @@ public class Comment {
     private int like;
     @DBRef
     private User user;
+    @DBRef
+    private Itinerary itinerary;
 }

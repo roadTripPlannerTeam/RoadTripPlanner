@@ -1,45 +1,47 @@
 package com.mycompany.roadtripplanner.services;
 
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Itinerary;
+import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.ItineraryRepositoryImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
-@Service
 public class ItineraryService {
 
     private ModelMapper mapper;
     private ItineraryRepositoryImpl repository;
+    private CommentRepositoryImpl commentrepository;
 
     /**
      * Constructeur pour le mapper et l'interface repository
      * @param mapper
      * @param repository
      */
-    public ItineraryService(ModelMapper mapper, ItineraryRepositoryImpl repository) {
+
+    public ItineraryService(ModelMapper mapper, ItineraryRepositoryImpl repository, CommentRepositoryImpl commentrepository) {
         this.mapper = mapper;
         this.repository = repository;
+        this.commentrepository = commentrepository;
     }
 
     /**
      *
-         * @param itineraryObj
+     * @param itinerarySaveDTO
      * @return
      */
-    public ItineraryDTO save(ItinerarySaveDTO itineraryObj) {
-        Itinerary itineraryToSave = mapper.map(itineraryObj,Itinerary.class);
-        Itinerary itinerary =repository.save(itineraryToSave);
-        ItineraryDTO itinerarySaved = mapper.map(itinerary, ItineraryDTO.class);
-        return itinerarySaved;
+    public ItineraryGetSaveDTO save(ItinerarySaveDTO itinerarySaveDTO) {
+      return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
+
     }
 
     /**
@@ -52,6 +54,7 @@ public class ItineraryService {
     public List<ItineraryDTO> findAll() {
         List<ItineraryDTO>itineraries = new ArrayList<>();
         repository.findAll().forEach(itinerarie -> {
+            itinerarie.setComments( commentrepository.findCommentsByItinerary_Id(itinerarie.getId()));
             System.out.println(itinerarie);
             itineraries.add(mapper.map(itinerarie,ItineraryDTO.class));
         });

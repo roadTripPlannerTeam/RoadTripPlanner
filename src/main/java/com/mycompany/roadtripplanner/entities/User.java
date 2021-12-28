@@ -27,7 +27,9 @@ public class User {
     private Adress Adress;
     private String profilPicture;
 
-@DBRef
-    List<CommentDTO>comments;
+    @DBRef
+    private List<Comment>comments;
 
+    @DBRef
+    private List<Itinerary> itineraries;
 }

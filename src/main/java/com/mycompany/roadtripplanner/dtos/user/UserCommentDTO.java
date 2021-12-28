@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserCommentDTO {
+    private String id;
     private String firstName;
-
-    //private CommentRelationDTO comment;
+    private String lastName;
+    private String email;
 }

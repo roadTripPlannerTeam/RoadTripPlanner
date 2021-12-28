@@ -1,5 +1,6 @@
 package com.mycompany.roadtripplanner.dtos.comment;
 
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryRelationDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserRelationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +17,6 @@ public class CommentSaveDTO {
     private Date date;
     private int like;
     private UserRelationDTO user;
+    private ItineraryRelationDTO itinerary;
+
 }
