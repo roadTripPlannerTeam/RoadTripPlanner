@@ -34,6 +34,9 @@ public class UnknownStageControllerTest {
     @MockBean
     private UnknownStageService service;
 
+    @MockBean
+    private ModelMapper mapper;
+
     /**
      * Teste la route qui permet de récupérer un tableau de cinémas
      * Vérifie si le code de la requête est de 200, donc que la requête s'est bien passée
