@@ -1,5 +1,6 @@
-package com.mycompany.roadtripplanner.dtos.comment;
+package com.mycompany.roadtripplanner.dtos.commentResponse;
 
+import com.mycompany.roadtripplanner.dtos.comment.CommentRelationDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryRelationDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserRelationDTO;
 import lombok.AllArgsConstructor;
@@ -11,11 +12,12 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentSaveDTO {
+public class CommentResponseSaveDTO {
     private String title;
     private String description;
     private Date date;
     private int like;
     private UserRelationDTO user;
     private ItineraryRelationDTO itinerary;
+    private CommentRelationDTO comment;
 }

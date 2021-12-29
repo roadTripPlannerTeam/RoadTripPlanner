@@ -1,12 +1,8 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
-import com.mycompany.roadtripplanner.dtos.comment.CommentGetSaveDTO;
-import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
-import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
-import com.mycompany.roadtripplanner.entities.Comment;
+
+import com.mycompany.roadtripplanner.dtos.commentResponse.*;
 import com.mycompany.roadtripplanner.entities.CommentResponse;
-import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.CommentResponseRepositoryImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -16,29 +12,26 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CommentService {
+public class CommentResponseService {
 
     private ModelMapper mapper;
-    private CommentRepositoryImpl repository;
-    private CommentResponseRepositoryImpl commentResponseRepository;
+    private CommentResponseRepositoryImpl repository;
 
-
-    public CommentService(ModelMapper mapper, CommentRepositoryImpl repository, CommentResponseRepositoryImpl commentResponseRepository) {
+    public CommentResponseService(ModelMapper mapper, CommentResponseRepositoryImpl repository) {
         this.mapper = mapper;
         this.repository = repository;
-        this.commentResponseRepository = commentResponseRepository;
     }
 
     /**
      * Méthode qui permet de créer un commentaire
-     * @param commentSaveDTO
+     * @param commentResponseSaveDTO
      * elle transforme l'objet relationnel en objet java
      * elle effectue la requete de notre transformation par le repository
      * Elle retransforme notre objet recupéré du repository
      * @return un commentaire sauvegardé
      */
-    public CommentGetSaveDTO save(CommentSaveDTO commentSaveDTO) {
-        return mapper.map(repository.save(mapper.map(commentSaveDTO, Comment.class)), CommentGetSaveDTO.class);
+    public CommentResponseGetSaveDTO save(CommentResponseSaveDTO commentResponseSaveDTO) {
+        return mapper.map(repository.save(mapper.map(commentResponseSaveDTO, CommentResponse.class)), CommentResponseGetSaveDTO.class);
 
     }
 
@@ -49,12 +42,11 @@ public class CommentService {
      * tant qu'il y en à pour les inserer dans la liste.
      * @return une liste avec l'ensemble des commentaires
      */
-    public List<CommentDTO> findAll(){
-        List<CommentDTO>comments = new ArrayList<>();
+    public List<CommentResponseDTO> findAll(){
+        List<CommentResponseDTO>comments = new ArrayList<>();
         repository.findAll().forEach(comment -> {
-           List<CommentResponse> commentResponses = commentResponseRepository.findCommentResponsesByComment_Id(comment.getId());
-            comment.setCommentsResponse(commentResponses);
-            comments.add(mapper.map(comment,CommentDTO.class));
+            System.out.println(comment);
+            comments.add(mapper.map(comment,CommentResponseDTO.class));
         });
         return comments;
     }
@@ -64,16 +56,16 @@ public class CommentService {
      * @param id
      * La requête va recupérer le commentaire qui possède cette id passé en paramètre
      * On instancie le commentDTO a null puis dans notre condition Si notre optionnal n'est vide
-     * nous passerons ses valeur dans le CommentDto
+     * nous passerons ses valeur dans le CommentResponseDto
      * @return les informations du commentaire
      */
-    public Comment find(String id) {
-        Optional<Comment> commentOptional = repository.findById(id);
-        Comment commentDTO=null;
+    public Optional<CommentResponseDTO> find(String id) {
+        Optional<CommentResponse> commentOptional = repository.findById(id);
+        Optional<CommentResponseDTO> commentResponseDTO=null;
         if(commentOptional.isPresent()){
-            commentDTO= commentOptional.get();
+            commentResponseDTO= Optional.of(mapper.map(commentOptional.get(),CommentResponseDTO.class));
         }
-        return commentDTO;
+        return commentResponseDTO;
     }
 
     /**
@@ -83,20 +75,19 @@ public class CommentService {
      * Elle transformera l'objet recupérer du repository
      * @return un commentaire avec les informations modifier
      */
-    public Object update(CommentUpdateDTO commentUpdateDTO) {
-        Comment commentToSave = mapper.map(commentUpdateDTO,Comment.class);
-        Comment commentSaving = repository.save(commentToSave);
-        CommentDTO commentRetour= mapper.map(commentSaving,CommentDTO.class);
+    public CommentResponseDTO update(CommentResponseUpdateDTO commentUpdateDTO) {
+        CommentResponse commentToSave = mapper.map(commentUpdateDTO,CommentResponse.class);
+        CommentResponse commentSaving = repository.save(commentToSave);
+        CommentResponseDTO commentRetour= mapper.map(commentSaving,CommentResponseDTO.class);
         return commentRetour;
     }
 
     /**
      * Méthode qui supprimera le commentaire
-     * @param id
+     * @param commentResponseDeleteDTO
      * Elle envoie au repository la requête a supprimé qui possède cette id
      */
-    public void deleteById(String id) {
-        repository.deleteById(id);
-
+    public void delete(CommentResponseDeleteDTO commentResponseDeleteDTO) {
+        repository.delete(mapper.map(commentResponseDeleteDTO,CommentResponse.class));
     }
 }

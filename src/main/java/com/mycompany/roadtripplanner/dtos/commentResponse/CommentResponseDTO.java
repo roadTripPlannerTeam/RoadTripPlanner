@@ -1,7 +1,6 @@
-package com.mycompany.roadtripplanner.dtos.comment;
+package com.mycompany.roadtripplanner.dtos.commentResponse;
 
-import com.mycompany.roadtripplanner.dtos.commentResponse.CommentResponseDTO;
-import com.mycompany.roadtripplanner.dtos.commentResponse.CommentResponseGetDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserCommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,12 +14,12 @@ import java.util.List;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDTO {
+public class CommentResponseDTO {
     private String id;
     private String title;
     private String description;
     private Date date;
     private int like;
     private UserCommentDTO user;
-    private List<CommentResponseGetDTO> commentsResponse;
+    private CommentGetDTO comment;
 }

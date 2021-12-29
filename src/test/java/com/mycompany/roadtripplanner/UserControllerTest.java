@@ -103,7 +103,8 @@ public class UserControllerTest {
         "Jeremie1",
         new Date(),
         new Adress(),
-        "123684IMAGE"
+        "123684IMAGE",
+
         );
     }
 }

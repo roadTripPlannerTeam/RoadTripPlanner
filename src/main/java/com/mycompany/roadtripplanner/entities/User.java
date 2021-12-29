@@ -32,4 +32,7 @@ public class User {
 
     @DBRef
     private List<Itinerary> itineraries;
+
+
+
 }
