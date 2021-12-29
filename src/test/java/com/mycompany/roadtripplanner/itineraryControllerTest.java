@@ -131,8 +131,6 @@ public class itineraryControllerTest {
                 "Voici mon experience",
                 2F,
                 Collections.singletonList(new Comment())
-
-
         );
     }
 
