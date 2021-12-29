@@ -1,10 +1,10 @@
-package com.mycompany.roadtripplanner.entities;
+package com.mycompany.roadtripplanner.dtos.commentResponse;
 
+import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
+import com.mycompany.roadtripplanner.dtos.user.UserCommentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
@@ -14,19 +14,12 @@ import java.util.List;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
-    @Id
+public class CommentResponseDTO {
     private String id;
     private String title;
     private String description;
     private Date date;
     private int like;
-    @DBRef
-    private User user;
-    @DBRef
-    private Itinerary itinerary;
-
-    @DBRef
-    private List<CommentResponse> commentsResponse;
-
+    private UserCommentDTO user;
+    private CommentGetDTO comment;
 }

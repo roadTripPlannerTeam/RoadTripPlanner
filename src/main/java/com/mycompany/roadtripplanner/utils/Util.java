@@ -1,5 +1,9 @@
 package com.mycompany.roadtripplanner.utils;
 
+import com.mycompany.roadtripplanner.entities.Stage;
+
+import java.util.Date;
+
 public class Util {
 
     /**
@@ -16,5 +20,13 @@ public class Util {
         System.out.println(newAmount);
         return newAmount;
     }
+
+
+    public  String createTitle(Stage stage1 , Stage stage2, Date date1, Date date2) {
+        String title = stage1.getName() + stage2.getName()  + date1 + date2;
+
+        return title ;
+    }
+
 
 }
