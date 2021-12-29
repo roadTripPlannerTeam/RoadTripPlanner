@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.UnknownStageController;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
+import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageUpdateDTO;
 import com.mycompany.roadtripplanner.services.UnknownStageService;
@@ -161,7 +162,7 @@ public class UnknownStageControllerTest {
      * @return UnknownStageDTO
      */
     private UnknownStageDTO createUnknownStageDTOTest(){
-        return new UnknownStageDTO("5", "c'est un point inconnu", new PositionGetDTO(), "Hotel");
+        return new UnknownStageDTO("5", "c'est un point inconnu", new PositionRelationDTO(), "Hotel");
     }
 
     /**
@@ -169,6 +170,6 @@ public class UnknownStageControllerTest {
      * @return UnknownStageUpdateDTO
      */
     private UnknownStageDTO updateUnknownStageDTOTest(){
-        return new UnknownStageDTO ("5", "c'est un autre point inconnu", new PositionGetDTO(),  "Restaurant");
+        return new UnknownStageDTO ("5", "c'est un autre point inconnu", new PositionRelationDTO(),  "Restaurant");
     }
 }
