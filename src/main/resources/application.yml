@@ -5,8 +5,19 @@ spring:
       database: road-trip-test   #� changer en fonction de notre base
       host: localhost
       port: 27017
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          secret: secretpassword
+          get:
+            token:
+              uri: /autenticate
 
 
 server:
   port: 8080
+
+#Jwt secret
+
 
