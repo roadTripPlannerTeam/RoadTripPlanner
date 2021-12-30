@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = ItineraryController.class)
 public class itineraryControllerTest {
     //Injection de dependance
-    @Autowired
+ /*   @Autowired
     private MockMvc mockMvc;
 
     //On copie le service
@@ -145,5 +145,5 @@ public class itineraryControllerTest {
                 2F,
                 Collections.singletonList(new Comment())
         );
-    }
+    }*/
 }
