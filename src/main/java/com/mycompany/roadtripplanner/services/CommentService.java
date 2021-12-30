@@ -6,7 +6,9 @@ import com.mycompany.roadtripplanner.dtos.comment.CommentDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Comment;
+import com.mycompany.roadtripplanner.entities.CommentResponse;
 import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
+import com.mycompany.roadtripplanner.repositories.CommentResponseRepositoryImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +22,21 @@ public class CommentService {
 
     private ModelMapper mapper;
     private CommentRepositoryImpl repository;
+    private CommentResponseRepositoryImpl commentResponseRepository;
 
-    /**
-     * Constructeur pour le modèle mapper et  l'interface repository
-     * @param mapper
-     * @param repository
-     */
-    public CommentService(ModelMapper mapper, CommentRepositoryImpl repository) {
+
+    public CommentService(ModelMapper mapper, CommentRepositoryImpl repository, CommentResponseRepositoryImpl commentResponseRepository) {
         this.mapper = mapper;
         this.repository = repository;
+        this.commentResponseRepository = commentResponseRepository;
     }
 
     /**
      * Méthode qui permet de créer un commentaire
-     * @param commentSaveDTO
      * elle transforme l'objet relationnel en objet java
      * elle effectue la requete de notre transformation par le repository
      * Elle retransforme notre objet recupéré du repository
+     * @param commentSaveDTO
      * @return un commentaire sauvegardé
      */
     public CommentGetSaveDTO save(CommentSaveDTO commentSaveDTO) {
@@ -53,9 +53,9 @@ public class CommentService {
      */
     public List<CommentDTO> findAll(){
         List<CommentDTO>comments = new ArrayList<>();
-        System.out.println("hello");
         repository.findAll().forEach(comment -> {
-            System.out.println(comment);
+           List<CommentResponse> commentResponses = commentResponseRepository.findCommentResponsesByComment_Id(comment.getId());
+            comment.setCommentsResponse(commentResponses);
             comments.add(mapper.map(comment,CommentDTO.class));
         });
         return comments;

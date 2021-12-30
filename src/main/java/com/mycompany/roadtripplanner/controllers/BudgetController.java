@@ -76,7 +76,7 @@ public class BudgetController {
     }
 
     /**
-     * Créé la route pour supprimer un objet budget via son Id
+     * Créé la route pour supprimer un objet budget via son objet
      * @param budgetDeleteDTO
      * @return un statut Http 200 ok true
      */
