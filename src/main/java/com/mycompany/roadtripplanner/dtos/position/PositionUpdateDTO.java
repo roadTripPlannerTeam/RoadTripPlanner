@@ -16,6 +16,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class PositionUpdateDTO {
     private String id;
-    private Long longitude;
-    private Long latitude;
+    private double longitude;
+    private double latitude;
 }

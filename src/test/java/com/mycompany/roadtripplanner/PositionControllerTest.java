@@ -140,16 +140,16 @@ public class PositionControllerTest {
     private PositionGetDTO positionGetDTO() {
         return new PositionGetDTO(
                 "1",
-                (long) 54.52563,
-                (long) 12.26899
+                54.52563,
+                12.26899
         );
     }
 
     private PositionGetDTO positionGetUpdateDTO() {
         return new PositionGetDTO(
                 "1",
-                (long) 52.36999,
-                (long) 42.54569
+                52.36999,
+                42.54569
         );
     }
 }
