@@ -1,4 +1,4 @@
-package com.mycompany.roadtripplanner.dtos.itinearay;
+package com.mycompany.roadtripplanner.dtos.itinerary;
 
 
 import lombok.AllArgsConstructor;

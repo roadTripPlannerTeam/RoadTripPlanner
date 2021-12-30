@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.ItineraryController;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryUpdateDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserGetSaveDTO;
 import com.mycompany.roadtripplanner.services.ItineraryService;
@@ -41,7 +41,7 @@ public class itineraryControllerTest {
     //On test le controller findAll
     @Test
     public void testFindAllItinerary() throws Exception{
-        this.mockMvc.perform(get("/itinerary"))
+        this.mockMvc.perform(get("/itineraries"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
     }
@@ -50,7 +50,7 @@ public class itineraryControllerTest {
     @Test
     public void testFindOneItineraryWhereWrongId() throws Exception{
         //On execute la requete
-        this.mockMvc.perform(get("/itinerary/dvdcsdf5fs5sf"))
+        this.mockMvc.perform(get("/itineraries/dvdcsdf5fs5sf"))
                 .andExpect(status().isNotFound());
     }
 
@@ -62,7 +62,7 @@ public class itineraryControllerTest {
         //en parametre le type de requete
         BDDMockito.given(service.find("1"))
                 .willReturn (Optional.of(commentDTO));
-        MvcResult result = this.mockMvc.perform(get("/itinerary/1"))
+        MvcResult result = this.mockMvc.perform(get("/itineraries/1"))
                 .andExpect(status().isOk())
                 .andReturn();
         //On initialisz l'objet Gson pour la transformation
@@ -80,10 +80,10 @@ public class itineraryControllerTest {
         Gson json = new GsonBuilder().create();
         // on transforme notre obj en json
         String body = json.toJson(itineraryDTO);
-        this.mockMvc.perform(post("/itinerary")
+        this.mockMvc.perform(post("/itineraries")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class itineraryControllerTest {
         //On Initialise l'objet Gson pour la transformation
         Gson json = new GsonBuilder().create();
         String body = json.toJson(this.itineraryDto());
-        this.mockMvc.perform(delete("/itinerary")
+        this.mockMvc.perform(delete("/itineraries")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk());
@@ -104,7 +104,7 @@ public class itineraryControllerTest {
         ItineraryDTO itineraryUpdateDTo = this.itineraryUPDATEDTO();
         BDDMockito.given(service.find("1"))
                 .willReturn(Optional.of(itineraryDTO));
-        MvcResult result = this.mockMvc.perform(get("/itinerary/1"))
+        MvcResult result = this.mockMvc.perform(get("/itineraries/1"))
                 .andExpect((status().isOk()))
                 .andReturn();
         Gson json = new GsonBuilder().create();
@@ -114,7 +114,7 @@ public class itineraryControllerTest {
                 .thenReturn(itineraryUpdateDTo);
         //2 On fait la modification
         String bodyToSave = json.toJson(body);
-        MvcResult resultUpdated = this.mockMvc.perform(put("/itinerary")
+        MvcResult resultUpdated = this.mockMvc.perform(put("/itineraries")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bodyToSave))
                 .andExpect(status().isOk())

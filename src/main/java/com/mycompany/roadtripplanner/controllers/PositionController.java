@@ -17,7 +17,6 @@ import java.util.Optional;
 public class PositionController {
 
     PositionService service;
-
     public PositionController(PositionService service) {
         this.service = service;
     }

@@ -13,11 +13,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/comments")
 public class CommentController {
 
     private CommentService service;
-
     public CommentController(CommentService service){
         this.service = service;
     }

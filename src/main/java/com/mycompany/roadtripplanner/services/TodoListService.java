@@ -1,8 +1,10 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
+import com.mycompany.roadtripplanner.dtos.todolist.TodoListDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListSaveDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListUpdateDTO;
+import com.mycompany.roadtripplanner.entities.Budget;
 import com.mycompany.roadtripplanner.entities.TodoList;
 import com.mycompany.roadtripplanner.repositories.TodoListRepositoryImpl;
 import org.modelmapper.ModelMapper;
@@ -87,10 +89,10 @@ public class TodoListService {
 
     /**
      * Va supprimer un objet conversion grâce à son id
-     * @param id
+     * @param todoListDeleteDTO
      */
-    public void delete(String id){
-        repository.deleteById(id);
+    public void delete(TodoListDeleteDTO todoListDeleteDTO){
+        repository.delete( mapper.map(todoListDeleteDTO, TodoList.class));
     }
 
 }

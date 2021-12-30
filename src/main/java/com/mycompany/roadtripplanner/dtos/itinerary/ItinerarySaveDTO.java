@@ -1,20 +1,18 @@
-package com.mycompany.roadtripplanner.dtos.itinearay;
+package com.mycompany.roadtripplanner.dtos.itinerary;
 
-import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetRelationDTO;
-import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListRelationDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserRelationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
-@AllArgsConstructor
+@Document
 @NoArgsConstructor
-public class ItineraryGetSaveDTO {
-    private String id;
+@AllArgsConstructor
+public class ItinerarySaveDTO {
     private String title;
     private String experienceFeedback;
     private float nbStars;
