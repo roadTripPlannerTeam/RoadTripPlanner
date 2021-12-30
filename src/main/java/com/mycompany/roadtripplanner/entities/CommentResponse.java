@@ -8,29 +8,20 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 @Data
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class Itinerary {
+public class CommentResponse {
     @Id
     private String id;
     private String title;
-    private String experienceFeedback;
-    private float nbStars;
-
+    private String description;
+    private Date date;
+    private int like;
     @DBRef
-    private TodoList todoList;
+    private User user;
     @DBRef
-    private Budget budget;
-    @DBRef
-    private List<Comment> comments;
-    @DBRef
-    private  User user;
-
-    @DBRef
-    Map<Date, Stage> stages;
+    private Comment comment;
 }

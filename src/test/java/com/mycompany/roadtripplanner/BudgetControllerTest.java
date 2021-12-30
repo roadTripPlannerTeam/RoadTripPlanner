@@ -145,6 +145,21 @@ public class BudgetControllerTest {
     }
 
     /**
+     * Teste la route pour supprimer un Budget
+     * @throws Exception
+     */
+    @Test
+    public void testDeleteBudget() throws Exception{
+        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
+        BudgetDTO budgetDTO = this.createBudgetDTOTest();
+        String body = json.toJson(budgetDTO);
+        mockMvc.perform(delete("/budgets")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isOk());
+    }
+
+    /**
      * Créé un budgetDTO utilisé pour le test save
      * @return BudgetDTO
      */
@@ -159,21 +174,4 @@ public class BudgetControllerTest {
     private BudgetDTO updateBudgetDTOTest(){
         return new BudgetDTO ("5", 3000F, 50F);
     }
-
-    @Test
-    public void testDeleteBudget() throws Exception{
-
-        Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
-
-        BudgetDTO budgetDTO = this.createBudgetDTOTest();
-
-        String body = json.toJson(budgetDTO);
-                 mockMvc.perform(delete("/budgets")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
-                .andExpect(status().isOk());
-
-        //
-    }
-
 }

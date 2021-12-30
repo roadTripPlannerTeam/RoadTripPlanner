@@ -1,6 +1,5 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
 import com.mycompany.roadtripplanner.dtos.user.*;
 import com.mycompany.roadtripplanner.entities.Comment;
 import com.mycompany.roadtripplanner.entities.Itinerary;
@@ -22,10 +21,13 @@ public class UserService {
     private UserRepositoryImpl repository;
     private CommentRepositoryImpl commentRepository;
     private ItineraryRepositoryImpl itineraryRepository;
+
     /**
-     * Constructeur pour le modèle mapper et je l'interface repository
+     * user service injection dependance
      * @param mapper
      * @param repository
+     * @param commentRepository
+     * @param itineraryRepository
      */
     public UserService(ModelMapper mapper, UserRepositoryImpl repository, CommentRepositoryImpl commentRepository, ItineraryRepositoryImpl itineraryRepository) {
         this.mapper = mapper;
@@ -92,10 +94,7 @@ public class UserService {
      * @return un utilisateur avec les informations modifier
      */
     public UserDTO update(UserUpdateDTO userUpdateDTO) {
-        User userToSave = mapper.map(userUpdateDTO,User.class);
-        User userSaving = repository.save(userToSave);
-        UserDTO userRetour= mapper.map(userSaving,UserDTO.class);
-        return userRetour;
+        return mapper.map(repository.save(mapper.map(userUpdateDTO,User.class)),UserDTO.class);
     }
 
     /**

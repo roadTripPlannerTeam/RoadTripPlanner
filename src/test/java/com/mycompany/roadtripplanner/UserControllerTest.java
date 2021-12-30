@@ -4,10 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.UserController;
 import com.mycompany.roadtripplanner.dtos.user.UserDTO;
-import com.mycompany.roadtripplanner.dtos.user.UserSaveDTO;
 import com.mycompany.roadtripplanner.entities.Adress;
+import com.mycompany.roadtripplanner.entities.User;
 import com.mycompany.roadtripplanner.services.UserService;
-import org.apache.catalina.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -21,7 +20,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import java.util.Date;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,7 +71,7 @@ public class UserControllerTest {
 
     @Test
     public void testSaveUser() throws Exception {
-        // on creer notre utilisateur
+        // on creer notre cinema
         UserDTO userDTO= this.userDto();
         //On initialise notre json pour la creation
         Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
@@ -96,37 +94,6 @@ public class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    public void testUpdateUser() throws Exception{
-        //1 On recupère l'utilisateur
-        UserDTO userDTO = this.userDto();
-        UserDTO userUpdateDTo = this.userUPDATEDTO();
-        BDDMockito.given(service.find("1"))
-                .willReturn(Optional.of(userDTO));
-        MvcResult result = this.mockMvc.perform(get("/users/1"))
-                .andExpect((status().isOk()))
-                .andReturn();
-        Gson json  = new GsonBuilder().create();
-        UserDTO body = json.fromJson(result.getResponse().getContentAsString(),UserDTO.class);
-
-        BDDMockito.when(service.save(any(UserSaveDTO.class)))
-                .thenReturn(userUpdateDTo);
-        //2 On fait la modification
-        body.setFirstName("THERY");
-        String bodyToSave = json.toJson(body);
-        MvcResult resultUpdated = this.mockMvc.perform(put("/users")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(bodyToSave))
-                .andExpect(status().isOk())
-                .andReturn();
-
-        //2.5On transforme le résultat en objet
-        UserDTO finalBody = json.fromJson(resultUpdated.getResponse().getContentAsString(), UserDTO.class);
-
-        //3 On verifie si il a bien été modifié
-        Assertions.assertEquals(finalBody.getFirstName(),this.userUPDATEDTO().getFirstName());
-    }
-
     private UserDTO userDto(){
         return new UserDTO(
         "1",
@@ -136,20 +103,8 @@ public class UserControllerTest {
         "Jeremie1",
         new Date(),
         new Adress(),
-        "123684IMAGE"
+        "123684IMAGE",
 
-        );
-    }
-    private UserDTO userUPDATEDTO(){
-        return new UserDTO(
-                "1",
-                "THERY",
-                "nOELIE",
-                "thery.jeremie@yahoo.fr",
-                "Jeremie1",
-                new Date(),
-                new Adress(),
-                "111114IMAGE"
         );
     }
 }
