@@ -3,6 +3,7 @@ package com.mycompany.roadtripplanner.controllers;
 import com.mycompany.roadtripplanner.dtos.stage.*;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
+
 import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
 import com.mycompany.roadtripplanner.services.StageService;
@@ -32,7 +33,7 @@ public class StageController {
      * @return List<StageGetDTO>
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public List<StageGetDTO> findAll() {
         return service.findAll();
     }
@@ -83,7 +84,7 @@ public class StageController {
     @DeleteMapping
     public ResponseEntity<String> delete(@RequestBody StageDeleteDTO stage) {
         service.delete(stage);
-        return ResponseEntity.ok("stage bien supprimé");
+        return ResponseEntity.ok("stage bien supprimée");
     }
 
 }
