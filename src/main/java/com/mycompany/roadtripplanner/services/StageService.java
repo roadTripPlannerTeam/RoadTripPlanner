@@ -61,14 +61,9 @@ public class StageService {
      * @param stageSaveDTO
      * @return StageGetDTO stageSaved
      */
-    public StageGetDTO save(StageSaveDTO stageSaveDTO) {
-        Stage stageToSave = mapper.map(
-                stageSaveDTO,
-                Stage.class
-        );
-        Stage stage = repository.save(stageToSave);
-        StageGetDTO stageSaved = mapper.map(stage, StageGetDTO.class);
-        return stageSaved;
+    public StageGetSaveDTO save(StageSaveDTO stageSaveDTO) {
+      return  mapper.map( repository.save( mapper.map(stageSaveDTO, Stage.class)), StageGetSaveDTO.class);
+
     }
 
     /**
