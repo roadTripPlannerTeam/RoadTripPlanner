@@ -32,7 +32,7 @@ public class StageController {
      * @return List<StageGetDTO>
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public List<StageGetDTO> findAll() {
         return service.findAll();
     }
