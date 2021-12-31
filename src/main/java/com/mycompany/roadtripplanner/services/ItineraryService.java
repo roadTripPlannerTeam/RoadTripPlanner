@@ -5,6 +5,7 @@ import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetFindAllDTO;
 import com.mycompany.roadtripplanner.entities.Itinerary;
 import com.mycompany.roadtripplanner.entities.Stage;
 import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
@@ -16,7 +17,6 @@ import org.modelmapper.ModelMapper;
 
 import java.util.*;
 
-
 public class ItineraryService {
 
     private ModelMapper mapper;
@@ -26,9 +26,11 @@ public class ItineraryService {
 
 
     /**
-     * Constructeur pour le mapper et l'interface repository
+     *
      * @param mapper
      * @param repository
+     * @param commentrepository
+     * @param stageRepository
      */
 
     public ItineraryService(ModelMapper mapper, ItineraryRepositoryImpl repository, CommentRepositoryImpl commentrepository, StageRepositoryImpl stageRepository) {
@@ -42,7 +44,7 @@ public class ItineraryService {
     /**
      *
      * @param itinerarySaveDTO
-     * @return
+     * @return ItineraryGetSaveDTO itineraryGetSaveDTO
      */
     public ItineraryGetSaveDTO save(ItinerarySaveDTO itinerarySaveDTO) {
       return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
@@ -50,18 +52,21 @@ public class ItineraryService {
     }
 
     /**
-     * stage itinerary gestion .
-     * @param stages
-     * @return
+     * list to map  .
+     * @param stages List<Stage>
+     * @return Map <Date, Stage>
      */
 
     private Map<Date, Stage> convertListToMap(List<Stage> stages) {
-        Map<Date, Stage> map = new TreeMap<>();
+        Map<Date, Stage> map = new HashMap<>();
         for (Stage stage : stages) {
             map.put(stage.getDate(), stage);
         }
         return map;
     }
+
+
+
 
     /**
      * Méthode qui permet de récuperer une liste d'itineraire
@@ -76,7 +81,12 @@ public class ItineraryService {
             List<Stage> stageList = stageRepository.findStagesByItinerary_Id(itinerarie.getId());
             itinerarie.setStages( this.convertListToMap(stageList));
             itinerarie.setComments( commentrepository.findCommentsByItinerary_Id(itinerarie.getId()));
-            itineraries.add(mapper.map(itinerarie,ItineraryDTO.class));
+            ItineraryDTO itineraryDTO= mapper.map(itinerarie,ItineraryDTO.class);
+            Map<Date, StageGetFindAllDTO> itineraryDTOStages= itineraryDTO.getStages();
+            Map<Date, StageGetFindAllDTO> treeMap = new TreeMap<>();
+            treeMap.putAll(itineraryDTOStages);
+            itineraryDTO.setStages(treeMap);
+            itineraries.add(itineraryDTO);
         });
         return itineraries;
     }

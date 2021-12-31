@@ -7,6 +7,7 @@ import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetFindAllDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserGetSaveDTO;
 import com.mycompany.roadtripplanner.services.ItineraryService;
@@ -20,8 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -136,7 +136,8 @@ public class itineraryControllerTest {
                 new TodoListDTO(),
                 new BudgetDTO(),
                 new UserGetSaveDTO(),
-                new ArrayList<CommentGetDTO>()
+                new ArrayList<CommentGetDTO>(),
+                new TreeMap<Date, StageGetFindAllDTO>()
 
         );
     }
@@ -150,7 +151,9 @@ public class itineraryControllerTest {
                 new TodoListDTO(),
                 new BudgetDTO(),
                 new UserGetSaveDTO(),
-                new ArrayList<CommentGetDTO>()
+                new ArrayList<CommentGetDTO>(),
+                new TreeMap<Date, StageGetFindAllDTO>()
+
         );
     }
 }
