@@ -1,15 +1,16 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentGetSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
-import com.mycompany.roadtripplanner.entities.Comment;
 import com.mycompany.roadtripplanner.services.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/comment")
@@ -48,11 +49,12 @@ public class CommentController {
      * @return le commentaire avec c'est information si le commentaire existe
      */
     @GetMapping("{id}")
-    public ResponseEntity<Comment> find(@PathVariable String id ){
-        Comment commentDto = service.find(id);
-        if(commentDto ==null)
-            return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(commentDto);
+    public ResponseEntity<CommentDTO> find(@PathVariable String id ){
+        try{
+            return ResponseEntity.ok(service.find(id).get());
+        }catch(NoSuchElementException e){
+            return ResponseEntity.notFound().header(e.getMessage()).build();
+        }
     }
 
     /**
@@ -62,18 +64,19 @@ public class CommentController {
      * @return une reponse du service si la modification est un succès avec les nouvelles informations
      */
     @PutMapping()
-    public ResponseEntity<Object> update(@RequestBody CommentUpdateDTO commentUpdateDTO){
+    public ResponseEntity<CommentDTO> update(@RequestBody CommentUpdateDTO commentUpdateDTO){
         return  ResponseEntity.ok(service.update(commentUpdateDTO));
     }
 
     /**
      * Controlleur qui demande au service de supprimer un commentaire par l'id donné dans le path variable
-     * @param id
+     * @param commentDeleteDTO
      * @return une réponse true si le commentaire à bien était suppprimé
      */
-    @DeleteMapping("{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable String id){
-        service.deleteById(id);
-        return ResponseEntity.ok(true);
+
+    @DeleteMapping()
+    public ResponseEntity<String> delete(@RequestBody CommentDeleteDTO commentDeleteDTO){
+        service.delete(commentDeleteDTO);
+        return ResponseEntity.ok("Comment is delete with success");
     }
 }

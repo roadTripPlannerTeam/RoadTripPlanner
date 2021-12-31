@@ -1,6 +1,5 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
 import com.mycompany.roadtripplanner.dtos.user.*;
 import com.mycompany.roadtripplanner.entities.Comment;
 import com.mycompany.roadtripplanner.entities.Itinerary;
