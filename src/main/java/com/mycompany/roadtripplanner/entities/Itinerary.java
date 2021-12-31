@@ -31,6 +31,7 @@ public class Itinerary {
     @DBRef
     private  User user;
 
+    private Date date ;
     @DBRef
-    Map<Date, Stage> stages;
+    private Map<Date, Stage> stages;
 }
