@@ -7,6 +7,8 @@ import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageUpdateDTO;
+import com.mycompany.roadtripplanner.entities.Position;
+import com.mycompany.roadtripplanner.entities.Stage;
 import com.mycompany.roadtripplanner.services.UnknownStageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -84,7 +87,7 @@ public class UnknownStageControllerTest {
 
         // Je test l'égalité des attributs
         Assertions.assertEquals(body.getId(), this.createUnknownStageDTOTest().getId());
-        Assertions.assertEquals(body.getCategory(), this.createUnknownStageDTOTest().getCategory());
+        Assertions.assertEquals(body.getStage().getId(), this.createUnknownStageDTOTest().getStage().getId());
     }
 
     /**
@@ -139,7 +142,7 @@ public class UnknownStageControllerTest {
         String result1 = resultUpdated.getResponse().getContentAsString();
         UnknownStageDTO finalBody = json.fromJson(resultUpdated.getResponse().getContentAsString(), UnknownStageDTO.class);
         // Je teste les assertions
-        Assertions.assertEquals(finalBody.getCategory(), this.updateUnknownStageDTOTest().getCategory());
+        Assertions.assertEquals(finalBody.getStage().getId(), this.updateUnknownStageDTOTest().getStage().getId());
     }
 
     /**
@@ -162,7 +165,7 @@ public class UnknownStageControllerTest {
      * @return UnknownStageDTO
      */
     private UnknownStageDTO createUnknownStageDTOTest(){
-        return new UnknownStageDTO("5", "c'est un point inconnu", new PositionRelationDTO(), "Hotel");
+        return new UnknownStageDTO("5", new Stage("3", "stagetest", new Position()), new ArrayList<>());
     }
 
     /**
@@ -170,6 +173,6 @@ public class UnknownStageControllerTest {
      * @return UnknownStageUpdateDTO
      */
     private UnknownStageDTO updateUnknownStageDTOTest(){
-        return new UnknownStageDTO ("5", "c'est un autre point inconnu", new PositionRelationDTO(),  "Restaurant");
+        return new UnknownStageDTO ("5", new Stage("5", "stagetest", new Position()), new ArrayList<>());
     }
 }
