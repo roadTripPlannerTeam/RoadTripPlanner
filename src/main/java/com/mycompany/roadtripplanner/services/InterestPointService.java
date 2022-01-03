@@ -1,9 +1,6 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointDTO;
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointSaveDTO;
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.interestpoint.*;
 import com.mycompany.roadtripplanner.entities.InterestPoint;
 import com.mycompany.roadtripplanner.repositories.InterestPointRepositoryImpl;
 import org.modelmapper.ModelMapper;
@@ -62,9 +59,8 @@ public class InterestPointService {
      * @param obj
      * @return l'objet interestPoint créé
      */
-    public InterestPointDTO save(InterestPointSaveDTO obj){
-        InterestPointDTO interestPointSaved = mapper.map(repository.save(mapper.map(obj, InterestPoint.class)), InterestPointDTO.class);
-        return interestPointSaved;
+    public InterestPointGetSaveDTO save(InterestPointSaveDTO obj){
+        return mapper.map(repository.save(mapper.map(obj, InterestPoint.class)), InterestPointGetSaveDTO.class);
     }
 
     /**
@@ -73,8 +69,7 @@ public class InterestPointService {
      * @return l'objet interestPoint modifié
      */
     public InterestPointDTO update(InterestPointUpdateDTO interestPointUpdateDTO){
-        InterestPointDTO interestPointSaved = mapper.map(repository.save(mapper.map(interestPointUpdateDTO, InterestPoint.class)), InterestPointDTO.class);
-        return interestPointSaved;
+        return mapper.map(repository.save(mapper.map(interestPointUpdateDTO, InterestPoint.class)), InterestPointDTO.class);
     }
 
     /**

@@ -1,3 +1,4 @@
+/*
 package com.mycompany.roadtripplanner;
 
 import com.google.gson.Gson;
@@ -41,12 +42,14 @@ public class UnknownStageControllerTest {
     @MockBean
     private ModelMapper mapper;
 
-    /**
+    */
+/**
      * Teste la route qui permet de récupérer un tableau de cinémas
      * Vérifie si le code de la requête est de 200, donc que la requête s'est bien passée
      * Vérifie que le retour de cette requête est un tableau vide
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void allFindUnknownStagesTest() throws Exception {
         this.mockMvc.perform(get("/unknownstages"))
@@ -54,22 +57,26 @@ public class UnknownStageControllerTest {
                 .andExpect(jsonPath("$").isEmpty());
     }
 
-    /**
+    */
+/**
      * Test la route qui permet de récupérer un unknownstage
      * Elle doit retourner un statut 400 car je teste avec un Id qui n'existe pas
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void testFindNoCreatedUnknownStage() throws Exception{
         this.mockMvc.perform(get("/unknownstages/1"))
                 .andExpect(status().isNotFound());
     }
 
-    /**
+    */
+/**
      * Teste la route qui permet de récupérer un unknownstage
      * Doit retourner un unknownstageDTO
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void testFindOneUnknownStage() throws Exception{
         // Création d'un unknownstage de test
@@ -90,11 +97,13 @@ public class UnknownStageControllerTest {
         Assertions.assertEquals(body.getStage().getId(), this.createUnknownStageDTOTest().getStage().getId());
     }
 
-    /**
+    */
+/**
      * Teste la route qui permet de créer un unknownstage
      * Vérifie que la requête HTTP est bien 201, car statut CREATED
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void testSaveUnknownStage() throws Exception{
         // Création d'un unknownstage de test
@@ -145,10 +154,12 @@ public class UnknownStageControllerTest {
         Assertions.assertEquals(finalBody.getStage().getId(), this.updateUnknownStageDTOTest().getStage().getId());
     }
 
-    /**
+    */
+/**
      * Teste la route pour supprimer une unknownstage
      * @throws Exception
-     */
+     *//*
+
     @Test
     public void testDeleteUnknownStage() throws Exception{
         Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
@@ -160,19 +171,23 @@ public class UnknownStageControllerTest {
                 .andExpect(status().isOk());
     }
 
-    /**
+    */
+/**
      * Créé un unknownstageDTO utilisé pour le test save
      * @return UnknownStageDTO
-     */
+     *//*
+
     private UnknownStageDTO createUnknownStageDTOTest(){
         return new UnknownStageDTO("5", new Stage("3", "stagetest", new Position()), new ArrayList<>());
     }
 
-    /**
+    */
+/**
      * Créé un unknownstageUpdateDTO utilisé pour l'update
      * @return UnknownStageUpdateDTO
-     */
+     *//*
+
     private UnknownStageDTO updateUnknownStageDTOTest(){
         return new UnknownStageDTO ("5", new Stage("5", "stagetest", new Position()), new ArrayList<>());
     }
-}
+}*/

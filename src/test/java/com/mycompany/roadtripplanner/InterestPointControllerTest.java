@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.InterestPointController;
 import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointDTO;
 import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointUpdateDTO;
-import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
+import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.services.InterestPointService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -162,7 +162,7 @@ public class InterestPointControllerTest {
      * @return InterestPointDTO
      */
     private InterestPointDTO createInterestPointDTOTest(){
-        return new InterestPointDTO("5", "banque test", new PositionRelationDTO(), "banque", "10 rue osef");
+        return new InterestPointDTO("5", "banque test", new PositionGetDTO(), "banque", "10 rue osef");
     }
 
     /**
@@ -170,6 +170,6 @@ public class InterestPointControllerTest {
      * @return InterestPointUpdateDTO
      */
     private InterestPointDTO updateInterestPointDTOTest(){
-        return new InterestPointDTO ("5", "hotel test", new PositionRelationDTO(), "hotel", "15 rue osef");
+        return new InterestPointDTO ("5", "hotel test", new PositionGetDTO(), "hotel", "15 rue osef");
     }
 }

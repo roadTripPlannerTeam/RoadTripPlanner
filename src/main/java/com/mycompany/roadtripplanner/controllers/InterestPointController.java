@@ -1,9 +1,6 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointDTO;
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointSaveDTO;
-import com.mycompany.roadtripplanner.dtos.interestpoint.InterestPointUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.interestpoint.*;
 import com.mycompany.roadtripplanner.services.InterestPointService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -60,7 +57,7 @@ public class InterestPointController {
      * @return un statut Http 201 Created
      */
     @PostMapping
-    public ResponseEntity<InterestPointDTO> save(@RequestBody InterestPointSaveDTO interestPointSaveDTO){
+    public ResponseEntity<InterestPointGetSaveDTO> save(@RequestBody InterestPointSaveDTO interestPointSaveDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(interestPointSaveDTO));
     }
 

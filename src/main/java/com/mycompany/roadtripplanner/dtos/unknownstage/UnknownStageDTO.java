@@ -1,6 +1,7 @@
 package com.mycompany.roadtripplanner.dtos.unknownstage;
 
 import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.entities.InterestPoint;
 import com.mycompany.roadtripplanner.entities.Stage;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 public class UnknownStageDTO {
     private String id;
-    private Stage stage;
-    private List<InterestPoint> interestPoints;
+    private StageGetDTO stage;
+   // private List<InterestPoint> interestPoints;
 }
