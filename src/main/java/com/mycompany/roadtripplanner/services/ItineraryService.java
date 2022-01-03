@@ -40,7 +40,7 @@ public class ItineraryService {
      * @return
      */
     public ItineraryGetSaveDTO save(ItinerarySaveDTO itinerarySaveDTO) {
-      return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
+        return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
 
     }
 
