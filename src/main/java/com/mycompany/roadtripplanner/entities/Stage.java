@@ -22,4 +22,8 @@ public class Stage {
     private String name;
     @DBRef
     private Position position;
+    @DBRef
+    private TodoList todoList;
+    @DBRef
+    private Budget budget;
 }
