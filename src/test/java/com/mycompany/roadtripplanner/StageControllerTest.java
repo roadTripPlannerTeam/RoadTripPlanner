@@ -6,6 +6,8 @@ import com.mycompany.roadtripplanner.controllers.StageController;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
+import com.mycompany.roadtripplanner.entities.Budget;
+import com.mycompany.roadtripplanner.entities.TodoList;
 import com.mycompany.roadtripplanner.services.StageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -145,7 +147,9 @@ public class StageControllerTest {
         return new StageGetDTO(
                 "1",
                 "stage1",
-                new PositionGetDTO()
+                new PositionGetDTO(),
+                new TodoList(),
+                new Budget()
         );
     }
 
@@ -153,7 +157,9 @@ public class StageControllerTest {
         return new StageGetDTO(
                 "1",
                 "stage2",
-                new PositionGetDTO()
+                new PositionGetDTO(),
+                new TodoList(),
+                new Budget()
         );
     }
 }
