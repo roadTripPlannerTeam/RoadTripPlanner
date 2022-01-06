@@ -2,6 +2,8 @@ package com.mycompany.roadtripplanner.dtos.interestpoint;
 
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
+import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageGetSaveDTO;
+import com.mycompany.roadtripplanner.entities.UnknownStage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +18,6 @@ public class InterestPointGetSaveDTO {
     private PositionRelationDTO position;
     private String category;
     private String adresse;
+    private UnknownStageGetSaveDTO unknownStage;
 
 }

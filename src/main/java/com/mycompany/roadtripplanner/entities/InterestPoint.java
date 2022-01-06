@@ -22,5 +22,7 @@ public class InterestPoint {
     private Position position;
     private String category;
     private String adresse;
+    @DBRef
+    private UnknownStage unknownStage ;
 
 }

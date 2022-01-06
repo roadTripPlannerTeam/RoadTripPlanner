@@ -19,10 +19,8 @@ public class UnknownStage {
 
     @Id
     private String id;
-
     @DBRef
     private Stage stage;
-    //@DBRef
-   // private List<InterestPoint> interestPoints;
-
+    @DBRef
+    private List<InterestPoint> interestPoints;
 }
