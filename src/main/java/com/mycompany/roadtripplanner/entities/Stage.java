@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 /**
  * Entité Stage
  */
@@ -26,4 +28,7 @@ public class Stage {
     private TodoList todoList;
     @DBRef
     private Budget budget;
+    private Date date;
+    @DBRef
+    private  Itinerary itinerary;
 }
