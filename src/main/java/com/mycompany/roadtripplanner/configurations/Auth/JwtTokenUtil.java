@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
 @Component
 public class JwtTokenUtil implements Serializable {
 
@@ -26,7 +25,7 @@ public class JwtTokenUtil implements Serializable {
 
     /**
      * Permet de récuperer un jeton
-      * @param token
+     * @param token
      * @param claimsResolver
      * @param <T>
      * @return

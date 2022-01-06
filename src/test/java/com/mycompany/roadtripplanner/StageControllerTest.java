@@ -3,6 +3,7 @@ package com.mycompany.roadtripplanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.StageController;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
@@ -17,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -145,7 +147,9 @@ public class StageControllerTest {
         return new StageGetDTO(
                 "1",
                 "stage1",
-                new PositionGetDTO()
+                new PositionGetDTO(),
+                new Date(),
+                new ItineraryDTO()
         );
     }
 
@@ -153,7 +157,9 @@ public class StageControllerTest {
         return new StageGetDTO(
                 "1",
                 "stage2",
-                new PositionGetDTO()
+                new PositionGetDTO(),
+                new Date(),
+                new ItineraryDTO()
         );
     }
 }

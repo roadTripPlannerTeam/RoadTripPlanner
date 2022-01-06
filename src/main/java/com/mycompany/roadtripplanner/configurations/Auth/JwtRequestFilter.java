@@ -2,6 +2,7 @@ package com.mycompany.roadtripplanner.configurations.Auth;
 
 import com.mycompany.roadtripplanner.services.serviceAuth.JwtUserService;
 import io.jsonwebtoken.ExpiredJwtException;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.logging.Logger;
+
 
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
@@ -25,7 +28,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUserService jwtUserService;
 
+
+
     // On applique un filtre à notre request
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // Je récupère la valeur "Authorization" dans le header de ma request
@@ -43,7 +49,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 System.out.println("Token expired");
             }
         } else {
-            logger.warn("the token JWT isn't good formated");
+            logger.warn("the token JWT is not good formated");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -51,9 +57,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
                         new UsernamePasswordAuthenticationToken(
-                              userDetails,
-                              null,
-                              userDetails.getAuthorities()
+                                userDetails,
+                                null,
+                                userDetails.getAuthorities()
                         );
                 usernamePasswordAuthenticationToken.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request)
