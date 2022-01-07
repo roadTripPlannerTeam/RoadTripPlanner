@@ -53,7 +53,10 @@ public class UnknownStageService {
         Optional<UnknownStage> unknownStageOptional = repository.findById(id);
         Optional<UnknownStageDTO> unknownStageDTO = null;
         if(unknownStageOptional.isPresent()){
-            unknownStageDTO = Optional.of(mapper.map(unknownStageOptional.get(), UnknownStageDTO.class));
+            UnknownStage unknownStage = unknownStageOptional.get();
+            List<InterestPoint> interestPointsByUnknownStageid = interestPointRepository.findInterestPointsByUnknownStage_Id(unknownStage.getId());
+            unknownStage.setInterestPoints(interestPointsByUnknownStageid);
+            unknownStageDTO = Optional.of(mapper.map(unknownStage, UnknownStageDTO.class));
         } else {
             throw new NoSuchElementException("Ce unknownStage n'existe pas");
         }
@@ -81,9 +84,9 @@ public class UnknownStageService {
 
     /**
      * Va supprimer un objet unknownStage grâce à son Id
-     * @param  unknownStageDeleteDTO
+     * @param  unknownStageDTO
      */
-    public void delete(UnknownStageDeleteDTO unknownStageDeleteDTO){
-        repository.delete(mapper.map(unknownStageDeleteDTO,UnknownStage.class));
+    public void delete(UnknownStageDTO unknownStageDTO){
+        repository.delete(mapper.map(unknownStageDTO,UnknownStage.class));
     }
 }

@@ -73,12 +73,12 @@ public class UnknownStageController {
 
     /**
      * Créé la route pour supprimer un objet unknownStage via son objet
-     * @param unknownStageDeleteDTO
+     * @param unknownStageDTO
      * @return un statut Http 200 ok true
      */
     @DeleteMapping()
-    public ResponseEntity<String> delete(@RequestBody UnknownStageDeleteDTO unknownStageDeleteDTO){
-        service.delete(unknownStageDeleteDTO);
+    public ResponseEntity<String> delete(@RequestBody UnknownStageDTO unknownStageDTO){
+        service.delete(unknownStageDTO);
         return ResponseEntity.ok("unknownStage bien supprimé ");
     }
     

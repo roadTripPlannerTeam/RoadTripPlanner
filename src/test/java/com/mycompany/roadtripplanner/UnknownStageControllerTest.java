@@ -1,15 +1,13 @@
-/*
+
 package com.mycompany.roadtripplanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.UnknownStageController;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
-import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageUpdateDTO;
-import com.mycompany.roadtripplanner.entities.Position;
-import com.mycompany.roadtripplanner.entities.Stage;
 import com.mycompany.roadtripplanner.services.UnknownStageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -38,17 +36,16 @@ public class UnknownStageControllerTest {
     private MockMvc mockMvc;
     @MockBean
     private UnknownStageService service;
-
     @MockBean
     private ModelMapper mapper;
 
-    */
+
 /**
      * Teste la route qui permet de récupérer un tableau de cinémas
      * Vérifie si le code de la requête est de 200, donc que la requête s'est bien passée
      * Vérifie que le retour de cette requête est un tableau vide
      * @throws Exception
-     *//*
+     */
 
     @Test
     public void allFindUnknownStagesTest() throws Exception {
@@ -57,12 +54,11 @@ public class UnknownStageControllerTest {
                 .andExpect(jsonPath("$").isEmpty());
     }
 
-    */
 /**
      * Test la route qui permet de récupérer un unknownstage
      * Elle doit retourner un statut 400 car je teste avec un Id qui n'existe pas
      * @throws Exception
-     *//*
+     */
 
     @Test
     public void testFindNoCreatedUnknownStage() throws Exception{
@@ -70,12 +66,11 @@ public class UnknownStageControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    */
 /**
      * Teste la route qui permet de récupérer un unknownstage
      * Doit retourner un unknownstageDTO
      * @throws Exception
-     *//*
+     */
 
     @Test
     public void testFindOneUnknownStage() throws Exception{
@@ -97,12 +92,11 @@ public class UnknownStageControllerTest {
         Assertions.assertEquals(body.getStage().getId(), this.createUnknownStageDTOTest().getStage().getId());
     }
 
-    */
 /**
      * Teste la route qui permet de créer un unknownstage
      * Vérifie que la requête HTTP est bien 201, car statut CREATED
      * @throws Exception
-     *//*
+     */
 
     @Test
     public void testSaveUnknownStage() throws Exception{
@@ -118,7 +112,10 @@ public class UnknownStageControllerTest {
                 .andExpect(status().isCreated());
     }
 
-
+    /**
+     * Teste la route qui permet d'update un unknownStage
+     * @throws Exception
+     */
     @Test
     public void testUpdateUnknownStage() throws Exception{
         // Je créé deux unknownstage de test
@@ -154,11 +151,11 @@ public class UnknownStageControllerTest {
         Assertions.assertEquals(finalBody.getStage().getId(), this.updateUnknownStageDTOTest().getStage().getId());
     }
 
-    */
+
 /**
      * Teste la route pour supprimer une unknownstage
      * @throws Exception
-     *//*
+     */
 
     @Test
     public void testDeleteUnknownStage() throws Exception{
@@ -171,23 +168,21 @@ public class UnknownStageControllerTest {
                 .andExpect(status().isOk());
     }
 
-    */
 /**
      * Créé un unknownstageDTO utilisé pour le test save
      * @return UnknownStageDTO
-     *//*
+     */
 
     private UnknownStageDTO createUnknownStageDTOTest(){
-        return new UnknownStageDTO("5", new Stage("3", "stagetest", new Position()), new ArrayList<>());
+        return new UnknownStageDTO("5", new StageGetDTO("3", "stagetest", new PositionGetDTO()), new ArrayList<>());
     }
 
-    */
 /**
      * Créé un unknownstageUpdateDTO utilisé pour l'update
      * @return UnknownStageUpdateDTO
-     *//*
+     */
 
     private UnknownStageDTO updateUnknownStageDTOTest(){
-        return new UnknownStageDTO ("5", new Stage("5", "stagetest", new Position()), new ArrayList<>());
+        return new UnknownStageDTO ("5", new StageGetDTO("5", "stagetest", new PositionGetDTO()), new ArrayList<>());
     }
-}*/
+}

@@ -73,12 +73,12 @@ public class InterestPointController {
 
     /**
      * Créé la route pour supprimer un objet interestPoint via son objet
-     * @param interestPointDeleteDTO
+     * @param interestPointDTO
      * @return un statut Http 200 ok true
      */
     @DeleteMapping()
-    public ResponseEntity<String> delete(@RequestBody InterestPointDeleteDTO interestPointDeleteDTO){
-        service.delete(interestPointDeleteDTO);
+    public ResponseEntity<String> delete(@RequestBody InterestPointDTO interestPointDTO){
+        service.delete(interestPointDTO);
         return ResponseEntity.ok("interestPoint bien supprimé ");
     }
 }

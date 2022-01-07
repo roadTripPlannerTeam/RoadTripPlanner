@@ -74,9 +74,9 @@ public class InterestPointService {
 
     /**
      * Va supprimer un objet interestPoint via son objet
-     * @param  interestPointDeleteDTO
+     * @param  interestPointDTO
      */
-    public void delete(InterestPointDeleteDTO interestPointDeleteDTO){
-        repository.delete( mapper.map(interestPointDeleteDTO, InterestPoint.class));
+    public void delete(InterestPointDTO interestPointDTO){
+        repository.delete( mapper.map(interestPointDTO, InterestPoint.class));
     }
 }
