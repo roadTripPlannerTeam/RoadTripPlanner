@@ -20,7 +20,7 @@ public class JwtTokenUtil implements Serializable {
     public static final long JWT_TOKEN_VALIDITY = 5*60*60;
 
     // Je lui donne ma clé secrete
-    @Value("secretKeys")
+    @Value("${mycompagny.app.jwtSecret}")
     private String secret;
 
     /**

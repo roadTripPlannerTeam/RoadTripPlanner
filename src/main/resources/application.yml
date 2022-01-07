@@ -9,8 +9,8 @@ spring:
 server:
   port: 8080
 
+mycompagny:
+  app:
+    jwtSecret: roadTripPlannerSecretKey
+    jwtExpirationMs: 86400000
 
-
-mycompagny.app.jwtSecret: roadTripPlannerSecretKey
-
-mycompagny.app.jwtExpirationMs: 86400000
