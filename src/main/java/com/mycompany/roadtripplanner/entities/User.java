@@ -48,7 +48,6 @@ public class User {
         this.Adress =adress;
         this.birthday = birthday;
         this.profilPicture = profilPicture;
-
     }
 
 

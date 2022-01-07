@@ -50,7 +50,6 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		System.out.println(loginRequest);
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
@@ -74,7 +73,6 @@ public class AuthController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		System.out.println(signUpRequest);
 
 		if (userRepositoryAuth.existsByEmail(signUpRequest.getEmail())) {
 			return ResponseEntity
@@ -95,21 +93,21 @@ public class AuthController {
 
 		if (strRoles == null) {;
 			Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-					.orElseThrow(() -> new RuntimeException("Error: Role is not found."+ user));
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "admin":
 					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-							.orElseThrow(() -> new RuntimeException("Error: Role admin is not found."+strRoles+roles + user));
+							.orElseThrow(() -> new RuntimeException("Error: Role admin is not found."));
 
 					roles.add(adminRole);
 
 					break;
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-							.orElseThrow(() -> new RuntimeException("Error: Role user is not found."+roles+ user));
+							.orElseThrow(() -> new RuntimeException("Error: Role user is not found."));
 					roles.add(userRole);
 				}
 			});
