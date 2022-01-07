@@ -3,12 +3,12 @@ package com.mycompany.roadtripplanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.StageController;
+import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
-import com.mycompany.roadtripplanner.entities.Budget;
-import com.mycompany.roadtripplanner.entities.TodoList;
+import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.services.StageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -88,7 +88,7 @@ public class StageControllerTest {
     @Test
     public void testSaveStage() throws Exception {
         StageGetDTO stageGetDTO = this.stageGetDTO();
-        Gson json = new GsonBuilder().create();
+        Gson json = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         String body = json.toJson(stageGetDTO);
         this.mockMvc.perform(post("/stages")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -150,8 +150,8 @@ public class StageControllerTest {
                 "1",
                 "stage1",
                 new PositionGetDTO(),
-                new TodoList(),
-                new Budget(),
+                new TodoListDTO(),
+                new BudgetDTO(),
                 new Date(),
                 new ItineraryDTO()
         );
@@ -162,8 +162,8 @@ public class StageControllerTest {
                 "1",
                 "stage2",
                 new PositionGetDTO(),
-                new TodoList(),
-                new Budget(),
+                new TodoListDTO(),
+                new BudgetDTO(),
                 new Date(),
                 new ItineraryDTO()
         );
