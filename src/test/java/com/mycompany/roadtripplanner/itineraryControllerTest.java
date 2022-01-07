@@ -1,12 +1,13 @@
 package com.mycompany.roadtripplanner;
-
+/*
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.ItineraryController;
-import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
-import com.mycompany.roadtripplanner.dtos.comment.CommentGetDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
+
+import com.mycompany.roadtripplanner.entities.Comment;
+
 import com.mycompany.roadtripplanner.dtos.stage.StageGetFindAllDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserGetSaveDTO;
@@ -21,6 +22,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+
+import java.util.*;
 import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -31,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = ItineraryController.class)
 public class itineraryControllerTest {
     //Injection de dependance
-    @Autowired
+*/ /*   @Autowired
     private MockMvc mockMvc;
 
     //On copie le service
@@ -133,27 +136,32 @@ public class itineraryControllerTest {
                 "Mon titre",
                 "Voici mon experience",
                 2F,
+
                 new TodoListDTO(),
                 new BudgetDTO(),
                 new UserGetSaveDTO(),
                 new ArrayList<CommentGetDTO>(),
                 new TreeMap<Date, StageGetFindAllDTO>()
 
+
         );
     }
+
 
     private ItineraryDTO itineraryUPDATEDTO(){
         return new ItineraryDTO(
                      "1",
-                "Mon nv titre",
+                "Mon titre",
                 "Voici mon experience",
                 2F,
+
                 new TodoListDTO(),
                 new BudgetDTO(),
                 new UserGetSaveDTO(),
                 new ArrayList<CommentGetDTO>(),
                 new TreeMap<Date, StageGetFindAllDTO>()
 
+=
         );
     }
-}
+}*/
