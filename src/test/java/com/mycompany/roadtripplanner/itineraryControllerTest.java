@@ -5,13 +5,12 @@ import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.ItineraryController;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
-<<<<<<< HEAD
+
 import com.mycompany.roadtripplanner.entities.Comment;
-=======
+
 import com.mycompany.roadtripplanner.dtos.stage.StageGetFindAllDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserGetSaveDTO;
->>>>>>> 7180e231a6ee35baa7ed8700aeec0470c703507f
 import com.mycompany.roadtripplanner.services.ItineraryService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,12 +22,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-<<<<<<< HEAD
-import java.util.Collections;
-import java.util.Optional;
-=======
+
 import java.util.*;
->>>>>>> 7180e231a6ee35baa7ed8700aeec0470c703507f
+import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -140,16 +136,13 @@ public class itineraryControllerTest {
                 "Mon titre",
                 "Voici mon experience",
                 2F,
-<<<<<<< HEAD
-                Collections.singletonList(new Comment())
 
-=======
                 new TodoListDTO(),
                 new BudgetDTO(),
                 new UserGetSaveDTO(),
                 new ArrayList<CommentGetDTO>(),
                 new TreeMap<Date, StageGetFindAllDTO>()
->>>>>>> 7180e231a6ee35baa7ed8700aeec0470c703507f
+
 
         );
     }
@@ -161,16 +154,14 @@ public class itineraryControllerTest {
                 "Mon titre",
                 "Voici mon experience",
                 2F,
-<<<<<<< HEAD
-                Collections.singletonList(new Comment())
-=======
+
                 new TodoListDTO(),
                 new BudgetDTO(),
                 new UserGetSaveDTO(),
                 new ArrayList<CommentGetDTO>(),
                 new TreeMap<Date, StageGetFindAllDTO>()
 
->>>>>>> 7180e231a6ee35baa7ed8700aeec0470c703507f
+=
         );
     }
 }*/
