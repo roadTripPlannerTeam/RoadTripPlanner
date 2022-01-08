@@ -1,6 +1,5 @@
 package com.mycompany.roadtripplanner.entities;
 
-import com.mycompany.roadtripplanner.entities.Position;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,13 +21,13 @@ public class Stage {
     @Id
     private String id;
     private String name;
-
     @DBRef
     private Position position;
-
-
+    @DBRef
+    private TodoList todoList;
+    @DBRef
+    private Budget budget;
     private Date date;
-
     @DBRef
     private  Itinerary itinerary;
 }

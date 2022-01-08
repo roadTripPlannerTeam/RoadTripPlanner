@@ -87,6 +87,6 @@ public class StageService {
      * @param stageDeleteDTO
      */
     public void delete(StageDeleteDTO stageDeleteDTO) {
-        repository.delete( mapper.map(stageDeleteDTO,Stage.class));  ;
+        repository.delete( mapper.map(stageDeleteDTO,Stage.class));
     }
 }
