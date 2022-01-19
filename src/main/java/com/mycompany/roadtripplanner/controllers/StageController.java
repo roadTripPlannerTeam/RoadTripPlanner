@@ -18,9 +18,6 @@ import java.util.Optional;
 public class StageController {
 
     StageService service;
-
-
-
     public StageController(StageService service) {
         this.service = service;
     }
@@ -31,7 +28,7 @@ public class StageController {
      * @return List<StageGetDTO>
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public List<StageGetDTO> findAll() {
         return service.findAll();
     }

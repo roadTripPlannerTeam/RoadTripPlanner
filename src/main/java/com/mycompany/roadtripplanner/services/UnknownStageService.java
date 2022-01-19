@@ -1,10 +1,9 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDTO;
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageSaveDTO;
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.unknownstage.*;
+import com.mycompany.roadtripplanner.entities.InterestPoint;
 import com.mycompany.roadtripplanner.entities.UnknownStage;
+import com.mycompany.roadtripplanner.repositories.InterestPointRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.UnknownStageRepositoryImpl;
 import org.modelmapper.ModelMapper;
 
@@ -15,8 +14,9 @@ import java.util.Optional;
 
 public class UnknownStageService {
 
-    UnknownStageRepositoryImpl repository;
-    ModelMapper mapper;
+    private UnknownStageRepositoryImpl repository;
+    private InterestPointRepositoryImpl interestPointRepository;
+    private ModelMapper mapper;
 
     /**
      * Constructeur de UnknownStageService
@@ -24,9 +24,10 @@ public class UnknownStageService {
      * @param repository
      * @param mapper
      */
-    public UnknownStageService(ModelMapper mapper, UnknownStageRepositoryImpl repository) {
+    public UnknownStageService(ModelMapper mapper, UnknownStageRepositoryImpl repository, InterestPointRepositoryImpl interestPointRepository) {
         this.mapper = mapper;
         this.repository = repository;
+        this.interestPointRepository = interestPointRepository;
     }
 
     /**
@@ -35,7 +36,9 @@ public class UnknownStageService {
      */
     public List<UnknownStageDTO> findAll(){
         List<UnknownStageDTO> unknownStageDTOS = new ArrayList<>();
-        this.repository.findAll().forEach(unknownStage -> {
+        repository.findAll().forEach(unknownStage -> {
+            List<InterestPoint> interestPointsByUnknownStageid = interestPointRepository.findInterestPointsByUnknownStage_Id(unknownStage.getId());
+            unknownStage.setInterestPoints(interestPointsByUnknownStageid);
             unknownStageDTOS.add(mapper.map(unknownStage, UnknownStageDTO.class));
         });
         return unknownStageDTOS;
@@ -50,7 +53,10 @@ public class UnknownStageService {
         Optional<UnknownStage> unknownStageOptional = repository.findById(id);
         Optional<UnknownStageDTO> unknownStageDTO = null;
         if(unknownStageOptional.isPresent()){
-            unknownStageDTO = Optional.of(mapper.map(unknownStageOptional.get(), UnknownStageDTO.class));
+            UnknownStage unknownStage = unknownStageOptional.get();
+            List<InterestPoint> interestPointsByUnknownStageid = interestPointRepository.findInterestPointsByUnknownStage_Id(unknownStage.getId());
+            unknownStage.setInterestPoints(interestPointsByUnknownStageid);
+            unknownStageDTO = Optional.of(mapper.map(unknownStage, UnknownStageDTO.class));
         } else {
             throw new NoSuchElementException("Ce unknownStage n'existe pas");
         }
@@ -62,9 +68,8 @@ public class UnknownStageService {
      * @param obj
      * @return l'objet unknownStage créé
      */
-    public UnknownStageDTO save(UnknownStageSaveDTO obj){
-        UnknownStageDTO unknownStageSaved = mapper.map(repository.save(mapper.map(obj, UnknownStage.class)), UnknownStageDTO.class);
-        return unknownStageSaved;
+    public UnknownStageGetSaveDTO save(UnknownStageSaveDTO obj){
+        return mapper.map(repository.save(mapper.map(obj, UnknownStage.class)), UnknownStageGetSaveDTO.class);
     }
 
     /**
@@ -79,9 +84,9 @@ public class UnknownStageService {
 
     /**
      * Va supprimer un objet unknownStage grâce à son Id
-     * @param  unknownStageDeleteDTO
+     * @param  unknownStageDTO
      */
-    public void delete(UnknownStageDeleteDTO unknownStageDeleteDTO){
-        repository.delete(mapper.map(unknownStageDeleteDTO,UnknownStage.class));
+    public void delete(UnknownStageDTO unknownStageDTO){
+        repository.delete(mapper.map(unknownStageDTO,UnknownStage.class));
     }
 }

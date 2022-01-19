@@ -6,21 +6,23 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import java.util.List;
-
 /**
- * Entité UnknownStage
+ * Entité InterestPoint
  */
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UnknownStage {
+@AllArgsConstructor
+public class InterestPoint {
 
     @Id
     private String id;
+    private String name;
     @DBRef
-    private Stage stage;
+    private Position position;
+    private String category;
+    private String adresse;
     @DBRef
-    private List<InterestPoint> interestPoints;
+    private UnknownStage unknownStage ;
+
 }

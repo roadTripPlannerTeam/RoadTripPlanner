@@ -45,7 +45,7 @@ public class TodoListControllerTest {
      */
     @Test
     public void allFindTodoListsTest() throws Exception {
-        this.mockMvc.perform(get("/todoLists"))
+        this.mockMvc.perform(get("/todolists"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
     }
@@ -57,7 +57,7 @@ public class TodoListControllerTest {
      */
     @Test
     public void testFindNoCreatedTodoList() throws Exception{
-        this.mockMvc.perform(get("/todoLists/1"))
+        this.mockMvc.perform(get("/todolists/1"))
                 .andExpect(status().isNotFound());
     }
 
@@ -74,7 +74,7 @@ public class TodoListControllerTest {
         BDDMockito.given(service.find("5"))
                 .willReturn(Optional.of(todoListDTOTest));
         // Je teste la route qui permet de récupérer un todoList
-        MvcResult result = this.mockMvc.perform(get("/todoLists/5"))
+        MvcResult result = this.mockMvc.perform(get("/todolists/5"))
                 .andExpect(status().isOk())
                 .andReturn();
         // Je transforme du format Json récupéré en TodoListDTO
@@ -99,7 +99,7 @@ public class TodoListControllerTest {
         Gson json = new GsonBuilder().create();
         String body = json.toJson(todoListDTOTest);
         // Je teste la route qui permet de créer un todoList
-        this.mockMvc.perform(post("/todoLists")
+        this.mockMvc.perform(post("/todolists")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isCreated());
@@ -116,7 +116,7 @@ public class TodoListControllerTest {
         BDDMockito.given(service.find("5"))
                 .willReturn(Optional.of(todoListDTOTest));
         // Je teste la route qui permet de récupérer un todoList
-        MvcResult result = this.mockMvc.perform(get("/todoLists/5"))
+        MvcResult result = this.mockMvc.perform(get("/todolists/5"))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -129,7 +129,7 @@ public class TodoListControllerTest {
 
         // Qu'il va modifier
         String bodyToSave = json.toJson(body);
-        MvcResult resultUpdated = this.mockMvc.perform(put("/todoLists")
+        MvcResult resultUpdated = this.mockMvc.perform(put("/todolists")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bodyToSave))
                 .andExpect(status().isOk())

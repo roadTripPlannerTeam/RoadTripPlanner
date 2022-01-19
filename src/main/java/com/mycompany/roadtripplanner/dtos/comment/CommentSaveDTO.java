@@ -1,6 +1,6 @@
 package com.mycompany.roadtripplanner.dtos.comment;
 
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryRelationDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryRelationDTO;
 import com.mycompany.roadtripplanner.dtos.user.UserRelationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;

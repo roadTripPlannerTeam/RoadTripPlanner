@@ -1,10 +1,11 @@
+
 package com.mycompany.roadtripplanner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.UnknownStageController;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
-import com.mycompany.roadtripplanner.dtos.position.PositionRelationDTO;
+import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDTO;
 import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageUpdateDTO;
 import com.mycompany.roadtripplanner.services.UnknownStageService;
@@ -19,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -34,16 +36,17 @@ public class UnknownStageControllerTest {
     private MockMvc mockMvc;
     @MockBean
     private UnknownStageService service;
-
     @MockBean
     private ModelMapper mapper;
 
-    /**
+
+/**
      * Teste la route qui permet de récupérer un tableau de cinémas
      * Vérifie si le code de la requête est de 200, donc que la requête s'est bien passée
      * Vérifie que le retour de cette requête est un tableau vide
      * @throws Exception
      */
+
     @Test
     public void allFindUnknownStagesTest() throws Exception {
         this.mockMvc.perform(get("/unknownstages"))
@@ -51,22 +54,24 @@ public class UnknownStageControllerTest {
                 .andExpect(jsonPath("$").isEmpty());
     }
 
-    /**
+/**
      * Test la route qui permet de récupérer un unknownstage
      * Elle doit retourner un statut 400 car je teste avec un Id qui n'existe pas
      * @throws Exception
      */
+
     @Test
     public void testFindNoCreatedUnknownStage() throws Exception{
         this.mockMvc.perform(get("/unknownstages/1"))
                 .andExpect(status().isNotFound());
     }
 
-    /**
+/**
      * Teste la route qui permet de récupérer un unknownstage
      * Doit retourner un unknownstageDTO
      * @throws Exception
      */
+
     @Test
     public void testFindOneUnknownStage() throws Exception{
         // Création d'un unknownstage de test
@@ -84,14 +89,15 @@ public class UnknownStageControllerTest {
 
         // Je test l'égalité des attributs
         Assertions.assertEquals(body.getId(), this.createUnknownStageDTOTest().getId());
-        Assertions.assertEquals(body.getCategory(), this.createUnknownStageDTOTest().getCategory());
+        Assertions.assertEquals(body.getStage().getId(), this.createUnknownStageDTOTest().getStage().getId());
     }
 
-    /**
+/**
      * Teste la route qui permet de créer un unknownstage
      * Vérifie que la requête HTTP est bien 201, car statut CREATED
      * @throws Exception
      */
+
     @Test
     public void testSaveUnknownStage() throws Exception{
         // Création d'un unknownstage de test
@@ -106,7 +112,10 @@ public class UnknownStageControllerTest {
                 .andExpect(status().isCreated());
     }
 
-
+    /**
+     * Teste la route qui permet d'update un unknownStage
+     * @throws Exception
+     */
     @Test
     public void testUpdateUnknownStage() throws Exception{
         // Je créé deux unknownstage de test
@@ -139,13 +148,15 @@ public class UnknownStageControllerTest {
         String result1 = resultUpdated.getResponse().getContentAsString();
         UnknownStageDTO finalBody = json.fromJson(resultUpdated.getResponse().getContentAsString(), UnknownStageDTO.class);
         // Je teste les assertions
-        Assertions.assertEquals(finalBody.getCategory(), this.updateUnknownStageDTOTest().getCategory());
+        Assertions.assertEquals(finalBody.getStage().getId(), this.updateUnknownStageDTOTest().getStage().getId());
     }
 
-    /**
+
+/**
      * Teste la route pour supprimer une unknownstage
      * @throws Exception
      */
+
     @Test
     public void testDeleteUnknownStage() throws Exception{
         Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
@@ -157,19 +168,21 @@ public class UnknownStageControllerTest {
                 .andExpect(status().isOk());
     }
 
-    /**
+/**
      * Créé un unknownstageDTO utilisé pour le test save
      * @return UnknownStageDTO
      */
+
     private UnknownStageDTO createUnknownStageDTOTest(){
-        return new UnknownStageDTO("5", "c'est un point inconnu", new PositionRelationDTO(), "Hotel");
+        return new UnknownStageDTO("5", new StageGetDTO("3", "stagetest", new PositionGetDTO()), new ArrayList<>());
     }
 
-    /**
+/**
      * Créé un unknownstageUpdateDTO utilisé pour l'update
      * @return UnknownStageUpdateDTO
      */
+
     private UnknownStageDTO updateUnknownStageDTOTest(){
-        return new UnknownStageDTO ("5", "c'est un autre point inconnu", new PositionRelationDTO(),  "Restaurant");
+        return new UnknownStageDTO ("5", new StageGetDTO("5", "stagetest", new PositionGetDTO()), new ArrayList<>());
     }
 }

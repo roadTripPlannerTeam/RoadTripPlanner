@@ -16,11 +16,7 @@ import java.util.Optional;
 @CrossOrigin
 public class PositionController {
 
-
     PositionService service;
-
-
-
     public PositionController(PositionService service) {
         this.service = service;
     }
@@ -31,7 +27,7 @@ public class PositionController {
      * @return List<PositionGetDTO>
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public List<PositionGetDTO> findAll() {
         return service.findAll();
     }

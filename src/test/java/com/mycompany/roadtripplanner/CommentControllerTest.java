@@ -38,7 +38,7 @@ public class CommentControllerTest {
     //On test le controller findAll
     @Test
     public void testFindAllComment() throws Exception{
-        this.mockMvc.perform(get("/comment"))
+        this.mockMvc.perform(get("/comments"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
     }
@@ -47,7 +47,7 @@ public class CommentControllerTest {
     @Test
     public void testFindOneCommentWhereWrongId() throws Exception{
         //On execute la requete
-        this.mockMvc.perform(get("/comment/dvdcsdf5fs5sf"))
+        this.mockMvc.perform(get("/comments/dvdcsdf5fs5sf"))
                 .andExpect(status().isNotFound());
     }
 
@@ -59,7 +59,7 @@ public class CommentControllerTest {
         //en parametre le type de requete
         BDDMockito.given(service.find("1"))
                 .willReturn (Optional.of(commentDTO));
-        MvcResult result = this.mockMvc.perform(get("/comment/1"))
+        MvcResult result = this.mockMvc.perform(get("/comments/1"))
                 .andExpect(status().isOk())
                 .andReturn();
         //On initialisz l'objet Gson pour la transformation
@@ -77,7 +77,7 @@ public class CommentControllerTest {
         Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
         // on transforme notre obj en json
         String body = json.toJson(commentDTO);
-        this.mockMvc.perform(post("/comment")
+        this.mockMvc.perform(post("/comments")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk());
@@ -88,7 +88,7 @@ public class CommentControllerTest {
         //On Initialise l'objet Gson pour la transformation
         Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
         String body = json.toJson(this.commentDto());
-        this.mockMvc.perform(delete("/comment")
+        this.mockMvc.perform(delete("/comments")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(body))
                 .andExpect(status().isOk());
@@ -101,7 +101,7 @@ public class CommentControllerTest {
         CommentDTO commentUpdateDTo = this.commentUPDATEDTO();
         BDDMockito.given(service.find("1"))
                 .willReturn(Optional.of(commentDTO));
-        MvcResult result = this.mockMvc.perform(get("/comment/1"))
+        MvcResult result = this.mockMvc.perform(get("/comments/1"))
                 .andExpect((status().isOk()))
                 .andReturn();
         Gson json = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
@@ -111,7 +111,7 @@ public class CommentControllerTest {
                 .thenReturn(commentUpdateDTo);
         //2 On fait la modification
         String bodyToSave = json.toJson(body);
-        MvcResult resultUpdated = this.mockMvc.perform(put("/comment")
+        MvcResult resultUpdated = this.mockMvc.perform(put("/comments")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(bodyToSave))
                 .andExpect(status().isOk())

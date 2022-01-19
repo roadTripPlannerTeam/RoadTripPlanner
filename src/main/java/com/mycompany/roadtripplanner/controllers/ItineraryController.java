@@ -1,10 +1,10 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryGetSaveDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDeleteDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItinerarySaveDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryUpdateDTO;
 import com.mycompany.roadtripplanner.services.ItineraryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("itinerary")
+@RequestMapping("itineraries")
 public class ItineraryController {
 
     private ItineraryService service;
