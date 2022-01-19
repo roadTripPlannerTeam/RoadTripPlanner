@@ -1,10 +1,11 @@
 package com.mycompany.roadtripplanner.services;
 
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryGetSaveDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItinerarySaveDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryGetSaveDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDeleteDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItinerarySaveDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryUpdateDTO;
+
 import com.mycompany.roadtripplanner.dtos.stage.StageGetFindAllDTO;
 import com.mycompany.roadtripplanner.entities.Itinerary;
 import com.mycompany.roadtripplanner.entities.Stage;
@@ -12,7 +13,6 @@ import com.mycompany.roadtripplanner.repositories.CommentRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.ItineraryRepositoryImpl;
 import com.mycompany.roadtripplanner.repositories.StageRepositoryImpl;
 import org.modelmapper.ModelMapper;
-
 
 
 import java.util.*;
@@ -26,7 +26,7 @@ public class ItineraryService {
 
 
     /**
-     *
+     * Constructeur pour le mapper et l'interface repository
      * @param mapper
      * @param repository
      * @param commentrepository
@@ -47,7 +47,7 @@ public class ItineraryService {
      * @return ItineraryGetSaveDTO itineraryGetSaveDTO
      */
     public ItineraryGetSaveDTO save(ItinerarySaveDTO itinerarySaveDTO) {
-      return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
+        return   mapper.map(repository.save(mapper.map(itinerarySaveDTO,Itinerary.class)), ItineraryGetSaveDTO.class);
 
     }
 

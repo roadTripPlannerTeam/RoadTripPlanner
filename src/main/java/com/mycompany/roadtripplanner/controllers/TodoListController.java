@@ -1,11 +1,9 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
-import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
+import com.mycompany.roadtripplanner.dtos.todolist.TodoListDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListSaveDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListUpdateDTO;
-import com.mycompany.roadtripplanner.entities.TodoList;
 import com.mycompany.roadtripplanner.services.TodoListService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -38,7 +36,7 @@ public class TodoListController {
      * @return list de todolists
      */
     @GetMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public List<TodoListDTO> findAll(){
         return service.findAll();
     }
@@ -79,13 +77,11 @@ public class TodoListController {
 
     /**
      * Créé la route pour supprimer un objet todolist via son Id
-     * @param id
      * @return un statut Http 200 ok true
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable String id){
-        service.delete(id);
-        return ResponseEntity.ok(true);
+    @DeleteMapping()
+    public ResponseEntity<String> delete(@RequestBody TodoListDeleteDTO todoListDeleteDTO){
+        service.delete(todoListDeleteDTO);
+        return ResponseEntity.ok("todolist bien supprimé");
     }
-
 }
