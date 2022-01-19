@@ -1,9 +1,6 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDTO;
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageSaveDTO;
-import com.mycompany.roadtripplanner.dtos.unknownstage.UnknownStageUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.unknownstage.*;
 import com.mycompany.roadtripplanner.services.UnknownStageService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -60,7 +57,7 @@ public class UnknownStageController {
      * @return un statut Http 201 Created
      */
     @PostMapping
-    public ResponseEntity<UnknownStageDTO> save(@RequestBody UnknownStageSaveDTO unknownStageSaveDTO){
+    public ResponseEntity<UnknownStageGetSaveDTO> save(@RequestBody UnknownStageSaveDTO unknownStageSaveDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(unknownStageSaveDTO));
     }
 
@@ -76,12 +73,12 @@ public class UnknownStageController {
 
     /**
      * Créé la route pour supprimer un objet unknownStage via son objet
-     * @param unknownStageDeleteDTO
+     * @param unknownStageDTO
      * @return un statut Http 200 ok true
      */
     @DeleteMapping()
-    public ResponseEntity<String> delete(@RequestBody UnknownStageDeleteDTO unknownStageDeleteDTO){
-        service.delete(unknownStageDeleteDTO);
+    public ResponseEntity<String> delete(@RequestBody UnknownStageDTO unknownStageDTO){
+        service.delete(unknownStageDTO);
         return ResponseEntity.ok("unknownStage bien supprimé ");
     }
     
