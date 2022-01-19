@@ -17,6 +17,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Position {
     @Id
     private String id;
-    private Long longitude;
-    private Long latitude;
+    private double longitude;
+    private double latitude;
 }

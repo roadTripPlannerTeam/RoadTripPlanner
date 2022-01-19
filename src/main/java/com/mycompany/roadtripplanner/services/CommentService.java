@@ -1,8 +1,8 @@
 package com.mycompany.roadtripplanner.services;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
-import com.mycompany.roadtripplanner.dtos.comment.CommentDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentGetSaveDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
 import com.mycompany.roadtripplanner.entities.Comment;

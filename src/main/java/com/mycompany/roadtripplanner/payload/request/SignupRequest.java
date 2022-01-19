@@ -1,4 +1,4 @@
-package com.mycompany.roadtripplanner.dtos.user;
+package com.mycompany.roadtripplanner.payload.request;
 
 import com.mycompany.roadtripplanner.entities.Adress;
 import lombok.AllArgsConstructor;
@@ -6,17 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.Set;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserUpdateDTO {
-    private String id;
+@NoArgsConstructor
+public class SignupRequest {
     private String firstName;
     private String lastName;
     private String email;
+    private Set<String> roles;
     private String password;
-    private Date bithday;
-    private Adress adress;
+    private Date birthday;
+    private Adress Adress;
     private String profilPicture;
-    private UserRelationDTO commentRelationDTO;
+
 }

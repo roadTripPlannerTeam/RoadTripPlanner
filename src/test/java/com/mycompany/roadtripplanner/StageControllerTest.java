@@ -3,9 +3,12 @@ package com.mycompany.roadtripplanner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.StageController;
+import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
+import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.services.StageService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,6 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -84,7 +88,7 @@ public class StageControllerTest {
     @Test
     public void testSaveStage() throws Exception {
         StageGetDTO stageGetDTO = this.stageGetDTO();
-        Gson json = new GsonBuilder().create();
+        Gson json = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
         String body = json.toJson(stageGetDTO);
         this.mockMvc.perform(post("/stages")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -145,7 +149,11 @@ public class StageControllerTest {
         return new StageGetDTO(
                 "1",
                 "stage1",
-                new PositionGetDTO()
+                new PositionGetDTO(),
+                new TodoListDTO(),
+                new BudgetDTO(),
+                new Date(),
+                new ItineraryDTO()
         );
     }
 
@@ -153,7 +161,11 @@ public class StageControllerTest {
         return new StageGetDTO(
                 "1",
                 "stage2",
-                new PositionGetDTO()
+                new PositionGetDTO(),
+                new TodoListDTO(),
+                new BudgetDTO(),
+                new Date(),
+                new ItineraryDTO()
         );
     }
 }

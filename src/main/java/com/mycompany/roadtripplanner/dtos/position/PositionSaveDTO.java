@@ -15,6 +15,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PositionSaveDTO {
-    private Long longitude;
-    private Long latitude;
+    private double longitude;
+    private double latitude;
 }
