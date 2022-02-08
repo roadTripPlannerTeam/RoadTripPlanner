@@ -14,8 +14,7 @@ public class UserUpdateDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
-    private Date bithday;
+    private Date birthday;
     private Adress adress;
     private String profilPicture;
     private UserRelationDTO commentRelationDTO;

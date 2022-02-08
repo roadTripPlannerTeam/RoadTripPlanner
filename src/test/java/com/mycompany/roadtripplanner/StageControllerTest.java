@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mycompany.roadtripplanner.controllers.StageController;
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
 import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;

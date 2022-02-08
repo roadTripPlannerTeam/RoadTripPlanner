@@ -20,7 +20,7 @@ public class UserDTO {
     private String lastName;
     private String email;
     private String password;
-    private Date bithday;
+    private Date birthday;
     private Adress adress;
     private String profilPicture;
     private List<CommentGetDTO> comments ;
