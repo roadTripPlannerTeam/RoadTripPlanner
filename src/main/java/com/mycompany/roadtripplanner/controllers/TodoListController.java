@@ -1,11 +1,8 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
-import com.mycompany.roadtripplanner.dtos.budget.BudgetUpdateDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListSaveDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListUpdateDTO;
-import com.mycompany.roadtripplanner.entities.TodoList;
 import com.mycompany.roadtripplanner.services.TodoListService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -17,6 +14,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/todolists")
+@CrossOrigin
 public class TodoListController {
 
     TodoListService service;
