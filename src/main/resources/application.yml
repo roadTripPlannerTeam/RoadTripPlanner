@@ -2,7 +2,7 @@
 spring:
   data:
     mongodb:
-      database: madb   #� changer en fonction de notre base
+      database: madb
       host: localhost
       port: 27017
 

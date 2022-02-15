@@ -1,7 +1,7 @@
 package com.mycompany.roadtripplanner.dtos.stage;
 
 import com.mycompany.roadtripplanner.dtos.budget.BudgetDTO;
-import com.mycompany.roadtripplanner.dtos.itinearay.ItineraryDTO;
+import com.mycompany.roadtripplanner.dtos.itinerary.ItineraryDTO;
 import com.mycompany.roadtripplanner.dtos.position.PositionGetDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
 import lombok.AllArgsConstructor;

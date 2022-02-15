@@ -128,29 +128,10 @@ public class itineraryControllerTest {
     }
 
     private ItineraryDTO itineraryDto(){
-        return new ItineraryDTO(
-                "1",
-                "Mon titre",
-                "Voici mon experience",
-                2F,
-                new TodoListDTO(),
-                new BudgetDTO(),
-                new UserGetSaveDTO(),
-                new ArrayList<CommentGetDTO>()
-
-        );
+        return new ItineraryDTO();
     }
 
     private ItineraryDTO itineraryUPDATEDTO(){
-        return new ItineraryDTO(
-                     "1",
-                "Mon nv titre",
-                "Voici mon experience",
-                2F,
-                new TodoListDTO(),
-                new BudgetDTO(),
-                new UserGetSaveDTO(),
-                new ArrayList<CommentGetDTO>()
-        );
+        return new ItineraryDTO();
     }
 }

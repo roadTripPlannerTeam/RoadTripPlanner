@@ -174,7 +174,7 @@ public class UnknownStageControllerTest {
      */
 
     private UnknownStageDTO createUnknownStageDTOTest(){
-        return new UnknownStageDTO("5", new StageGetDTO("3", "stagetest", new PositionGetDTO()), new ArrayList<>());
+        return new UnknownStageDTO("5", new StageGetDTO(), new ArrayList<>());
     }
 
 /**
@@ -183,6 +183,6 @@ public class UnknownStageControllerTest {
      */
 
     private UnknownStageDTO updateUnknownStageDTOTest(){
-        return new UnknownStageDTO ("5", new StageGetDTO("5", "stagetest", new PositionGetDTO()), new ArrayList<>());
+        return new UnknownStageDTO ("5", new StageGetDTO(), new ArrayList<>());
     }
 }
