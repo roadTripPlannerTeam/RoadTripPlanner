@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/positions")
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class PositionController {
 
     PositionService service;

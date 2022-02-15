@@ -2,11 +2,15 @@
 spring:
   data:
     mongodb:
-      database: road-trip-test   #� changer en fonction de notre base
+      database: madb
       host: localhost
       port: 27017
 
-
 server:
   port: 8080
+
+mycompagny:
+  app:
+    jwtSecret: roadTripPlannerSecretKey
+    jwtExpirationMs: 86400000
 

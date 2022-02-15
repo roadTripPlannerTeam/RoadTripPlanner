@@ -11,6 +11,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/users")
+
 public class UserController {
 
     private UserService service;

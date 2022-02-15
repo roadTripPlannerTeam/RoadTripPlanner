@@ -1,9 +1,6 @@
 package com.mycompany.roadtripplanner.controllers;
 
-import com.mycompany.roadtripplanner.dtos.stage.StageDeleteDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageGetDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageSaveDTO;
-import com.mycompany.roadtripplanner.dtos.stage.StageUpdateDTO;
+import com.mycompany.roadtripplanner.dtos.stage.*;
 import com.mycompany.roadtripplanner.services.StageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/stages")
 public class StageController {
 
     StageService service;
+
+
+
     public StageController(StageService service) {
         this.service = service;
     }
@@ -53,12 +53,12 @@ public class StageController {
     /**
      * Création et sauvegarde d'une étape 'stage'
      *
-     * @param stage
-     * @return ResponseEntity<StageDTO>
+     * @param stageSaveDTO
+     * @return StageGetDTO
      */
     @PostMapping
-    public ResponseEntity<StageGetDTO> create(@RequestBody StageSaveDTO stage) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(stage));
+    public ResponseEntity<StageGetSaveDTO> create(@RequestBody StageSaveDTO stageSaveDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(stageSaveDTO));
     }
 
     /**
@@ -80,7 +80,7 @@ public class StageController {
     @DeleteMapping
     public ResponseEntity<String> delete(@RequestBody StageDeleteDTO stage) {
         service.delete(stage);
-        return ResponseEntity.ok("stage bien supprimée");
+        return ResponseEntity.ok("stage bien supprimé");
     }
 
 }

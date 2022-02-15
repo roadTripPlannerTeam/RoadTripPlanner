@@ -1,8 +1,8 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.comment.CommentDTO;
-import com.mycompany.roadtripplanner.dtos.comment.CommentDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentGetSaveDTO;
+import com.mycompany.roadtripplanner.dtos.comment.CommentDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentSaveDTO;
 import com.mycompany.roadtripplanner.dtos.comment.CommentUpdateDTO;
 import com.mycompany.roadtripplanner.services.CommentService;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+@CrossOrigin(origins = "*", maxAge = 3600)
 
 @RestController
 @RequestMapping("/comments")
