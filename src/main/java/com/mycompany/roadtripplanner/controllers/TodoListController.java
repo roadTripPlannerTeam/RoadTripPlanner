@@ -1,6 +1,7 @@
 package com.mycompany.roadtripplanner.controllers;
 
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListDTO;
+import com.mycompany.roadtripplanner.dtos.todolist.TodoListDeleteDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListSaveDTO;
 import com.mycompany.roadtripplanner.dtos.todolist.TodoListUpdateDTO;
 import com.mycompany.roadtripplanner.services.TodoListService;
@@ -77,13 +78,13 @@ public class TodoListController {
 
     /**
      * Créé la route pour supprimer un objet todolist via son Id
-     * @param id
+     * @param
      * @return un statut Http 200 ok true
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable String id){
-        service.delete(id);
-        return ResponseEntity.ok(true);
+    @DeleteMapping()
+    public ResponseEntity delete(@RequestBody TodoListDeleteDTO todoListDeleteDTO){
+        service.delete(todoListDeleteDTO);
+        return ResponseEntity.ok().build();
     }
 
 }

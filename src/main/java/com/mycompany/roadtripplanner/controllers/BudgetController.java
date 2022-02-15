@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/budgets")
+@CrossOrigin
 public class BudgetController {
 
     BudgetService service;
